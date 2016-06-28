@@ -25,6 +25,7 @@ var CapS = new Schema({
     frozenCapital:{type: Number, default: 0},
     country: {type: String, default: 'China'},
     city: { type: String, default: 'HangZhou'},
+    email: {type: String, default: 'null'},
     telephone: {type: Number, default: 13612345678 },
     nextYearInterest: {type: Number, default: 0},
     recentDate:{type: Date, default: Date.now }
