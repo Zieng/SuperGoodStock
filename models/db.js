@@ -1,0 +1,133 @@
+/**
+ * Created by zieng on 6/14/16.
+ */
+
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+// SecuritiesAccount Schema
+var SecS = new Schema({
+    saId: {type: Number, default: 0, required: true},
+    type: {type: Number, default: 0, required: true},
+    registeTime: {type: Date, default: Date.now},
+    tel: { type: String, default: 'null' },
+    docID: {type: Number, default: 0}
+});
+mongoose.model('SecuritiesAccount', SecS);
+
+// CapitalAccount Schema
+var CapS = new Schema({
+    caId:{type: Number, default: 0, required: true, unique: true},
+    username: { type: String, default: 'null' , required: true},
+    loginPassword: { type: String, default: 'null', required: true },
+    tradePassword: { type: String, default: 'null', required: true },
+    availableCapital: {type: Number, default: 0},
+    frozenCapital:{type: Number, default: 0},
+    country: {type: String, default: 'China'},
+    city: { type: String, default: 'HangZhou'},
+    telephone: {type: Number, default: 13612345678 },
+    nextYearInterest: {type: Number, default: 0},
+    recentDate:{type: Date, default: Date.now }
+});
+mongoose.model('CapitalAccount', CapS);
+
+// Administrator Schema
+var AdminS = new Schema({
+    adminId: {type: Number, default: 0, required: true, unique: true},
+    username: { type: String, default: 'null' , required: true},
+    loginPassword: { type: String, default: 'null', required: true },
+    level: {type: Number, default: 0}
+});
+mongoose.model('Administrator', AdminS);
+
+// Stock Schema
+var StkS = new Schema({
+    tickerSymbol: { type: Number, default: 0, required: true, unique: true},
+    name: { type: String, default: 'null', required: true },
+    launchDate: {type: Date, default: Date.now}
+});
+mongoose.model('Stock', StkS);
+
+// HoldingStock Schema
+var HoStkS = new Schema({
+    saID: [{
+        type: Schema.Types.ObjectId,
+        ref: 'SecS'
+    }],
+    tickerSymbol: [{
+        type: Schema.Types.ObjectId,
+        ref: 'StkS'
+    }],
+    amount: {type: Number, default: 0, required: true},
+    price: {type: Number, default: 0, required: true}
+});
+mongoose.model('HoldingStock', HoStkS);
+
+// Announcement Schema
+var AnnS = new Schema({
+    tickerSymbol: [{
+        type: Schema.Types.ObjectId,
+        ref: 'StkS'
+    }],
+    time: { type: Date, default: Date.now()},
+    title: { type: String, default: 'null'},
+    content: {type: String, default: 'null'}
+});
+mongoose.model('Announcement', AnnS);
+
+// DailyStock Schema
+var DailyS = new Schema({
+    tickerSymbol: [{
+        type: Schema.Types.ObjectId,
+        ref: 'StkS'
+    }],
+    limit:{ type: Number, default: 0},
+    state:{ type: Number, default: 0},
+    date: { type: Number, default: 0},
+    priceDataFileId:{ type: Number, default: 0},
+    currentPrice:{ type: Number, default: 0},
+    openingPrice:{ type: Number, default: 0},
+    closingPrice:{ type: Number, default: 0},
+    highestPrice:{ type: Number, default: 0},
+    lowestPrice:{ type: Number, default: 0}
+});
+mongoose.model('DailyStock', DailyS);
+
+// Instruction Schema
+var InstS = new Schema({
+    insId:{ type: Number, default: 0, required: true, unique: true},
+    tickerSymbol: [{
+        type: Schema.Types.ObjectId,
+        ref: 'StkS'
+    }],
+    caId:[{
+       type: Schema.Types.ObjectId,
+        ref: 'CapS'
+    }],
+    time: { type: Date, default: Date.now()},
+    type: { type: Number, default: 0},
+    amount: { type: Number, default: 0},
+    price: { type: Number, default:0},
+    leftAmount: { type: Number, default:0},
+    state: { type: Number, default:0},
+});
+mongoose.model('Instruction', InstS);
+
+// Transaction Schema
+var tranS = new Schema({
+    buyInsId: [{
+        type: Schema.Types.ObjectId,
+        ref: 'InstS'
+    }],
+    sellInsId: [{
+        type: Schema.Types.ObjectId,
+        ref: 'InstS'
+    }],
+    tId:{ type: Number, default:0},
+    user_amount:{ type: Number, default:0},
+    price: { type: Number, default:0},
+    amount: { type: Number, default:0}
+});
+mongoose.model('Transaction', tranS);
+
+mongoose.connect('mongodb://localhost/supergoodstock');
