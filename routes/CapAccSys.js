@@ -39,7 +39,7 @@ router.post('/create', function (req, res, next) {
     else if( loginPass != loginPass_confirm )
         res.send('两次输入的登录密码不符');
     else if( tradePass != tradePass_confirm )
-        res.send('两次输入的交易密码');
+        res.send('两次输入的交易密码不符');
     else
     {
         var newAccount = new CapitalAccount();
