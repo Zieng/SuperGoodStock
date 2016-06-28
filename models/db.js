@@ -21,6 +21,7 @@ var CapS = new Schema({
     username: { type: String, default: 'null' , required: true},
     loginPassword: { type: String, default: 'null', required: true },
     tradePassword: { type: String, default: 'null', required: true },
+    withdrawalPassword: {type: String, default: 'null', required: true},
     availableCapital: {type: Number, default: 0},
     frozenCapital:{type: Number, default: 0},
     country: {type: String, default: 'China'},

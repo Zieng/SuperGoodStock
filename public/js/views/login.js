@@ -20,7 +20,7 @@ $(document).ready(function(){
 			if (status == 'success') window.location.href = '/home';
 		},
 		error : function(e){
-			lv.showLoginError('Login Failure', 'Please check your username and/or password');
+			lv.showLoginError('登录 失败', '请检查用户名和密码');
 		}
 	}); 
 	$('#user-tf').focus();

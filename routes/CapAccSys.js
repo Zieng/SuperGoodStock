@@ -10,7 +10,12 @@ var CapitalAccount = mongoose.model('CapitalAccount');
 var countryList = require('../models/country-list');
 
 router.get('/', function (req, res, next) {
-    res.send('CapAccSys');
+    // res.send('CapAccSys_index');
+    res.render('CapAccSys_index');
+});
+
+router.post('/', function (req, res, next) {
+    res.send('You submit a form in /CapAccSys');
 });
 
 // create
@@ -63,16 +68,68 @@ router.post('/create', function (req, res, next) {
 
 // Modify
 router.get('/modify', function (req, res, next) {
-
+    res.render('CapAccSys_modify');
 });
 
 router.post('/modify', function (req, res, next) {
+    if( req.cookies.user == undefined || req.cookies.pass == undefined )
+    {
+        // res.redirect('/login');
+        res.cookie('user', 'CapTest', { maxAge: 900000 });
+        res.cookie('pass', '123456', { maxAge: 900000 });
+        console.log('Set Cookie');
+        // res.status(200).send();
+        res.redirect('/CapAccSys');
+    }
+    else
+    {
+        CapitalAccount.findOne({username: req.cookies.user}, function (err, obj) {
+            if( err )
+                throw err;
+            if( obj == null )
+                console.log('user not found');
+            else
+            {
+                console.log("cookie.user = "+req.cookies.user);
+
+                var passwordType = req.body.passwordType;
+                var oldPassword = req.body.oldPassword;
+                var newPassword = req.body.newPassword1;
+                var newPassword_confirm = req.body.newPassword2;
+
+                console.log("password type= "+passwordType);
+                console.log("oldPassword = "+oldPassword);
+                console.log("newPassword = "+newPassword);
+
+
+                if( newPassword == newPassword_confirm )
+                {
+                    if( passwordType == 'transaction' && oldPassword == obj.tradePassword )
+                        obj.tradePassword = newPassword;
+                    else if( passwordType == 'withdrawal' && oldPassword == obj.withdrawalPassword )
+                        obj.withdrawalPassword = newPassword;
+                    else if( passwordType == 'login' && oldPassword == obj.loginPassword )
+                        obj.loginPassword = newPassword;
+                    else
+                        res.send('旧密码错误!!');
+
+                    obj.save();
+                }
+                else
+                {
+                    res.send('两次输入的新密码不匹配!!');
+                }
+            }
+
+        });
+
+    }
 
 });
 
 // MoneySave
 router.get('/MoneySave', function (req, res, next) {
-
+    res.render('CapAccSys_moneysave');
 });
 
 router.post('/MoneySave', function (req, res, next) {
@@ -81,7 +138,7 @@ router.post('/MoneySave', function (req, res, next) {
 
 // MoneyLoad
 router.get('/MoneyLoad', function (req, res, next) {
-
+    res.render('CapAccSys_moneyload');
 });
 
 router.post('/MoneyLoad', function (req, res, next) {
@@ -90,7 +147,7 @@ router.post('/MoneyLoad', function (req, res, next) {
 
 // Lost
 router.get('/Lost', function (req, res, next) {
-
+    res.render('CapAccSys_lost');
 });
 
 router.post('/Lost', function (req, res, next) {
@@ -99,7 +156,7 @@ router.post('/Lost', function (req, res, next) {
 
 // Delete
 router.get('/Delete', function (req, res, next) {
-
+    res.render('CapAccSys_delete');
 });
 
 router.post('/Delete', function (req, res, next) {
@@ -108,7 +165,7 @@ router.post('/Delete', function (req, res, next) {
 
 // Info
 router.get('/Info', function (req, res, next) {
-
+    res.render('CapAccSys_info');
 });
 
 router.post('/Info', function (req, res, next) {

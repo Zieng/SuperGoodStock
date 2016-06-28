@@ -1,0 +1,276 @@
+﻿<form class="form-horizontal col-xs-6 col-xs-offset-3" >
+    <fieldset>
+        <legend>信息录入</legend>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">身份证</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" name="id" placeholder="身份证">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">证券账户</label>
+            <div class="col-lg-6">
+                <input type="password" class="form-control" name="securitiesAccount" placeholder="证券账户">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">真实姓名</label>
+            <div class="col-lg-3">
+                <input type="password" class="form-control" name="name" placeholder="真实姓名">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">性别</label>
+            <div class="col-lg-10">
+                <div class="radio col-lg-2">
+                    <label>
+                        <input type="radio" name="genderRadios" id="optionsRadios1" value="male" checked="">
+                        男
+                    </label>
+                </div>
+                <div class="radio col-lg-2">
+                    <label>
+                        <input type="radio" name="genderRadios" id="optionsRadios2" value="female">
+                        女
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">家庭住址</label>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" name="address" placeholder="家庭住址">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">取消</button>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<form class="form-horizontal col-xs-6 col-xs-offset-3" >
+    <fieldset>
+        <legend>开通账户</legend>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">交易密码</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" name="transactionPassword1" placeholder="交易密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">交易密码确认</label>
+            <div class="col-lg-6">
+                <input type="password" class="form-control" name="transactionPassword2" placeholder="交易密码确认">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">取款密码</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" name="withdrawalPassword1" placeholder="取款密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">取款密码确认</label>
+            <div class="col-lg-6">
+                <input type="password" class="form-control" name="withdrawalPassword2" placeholder="取款易密码确认">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-3">
+                <button type="reset" class="btn btn-default">取消</button>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<form class="form-horizontal col-xs-6 col-xs-offset-3" method="POST" action="/CapAccSys/modify">
+    <fieldset>
+        <legend>修改密码</legend>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">密码类型</label>
+            <div class="col-lg-9">
+                <div class="radio col-lg-3">
+                    <label>
+                        <input type="radio" name="passwordType" id="optionsRadios3" value="transaction" checked="">
+                        交易密码
+                    </label>
+                </div>
+                <div class="radio col-lg-3">
+                    <label>
+                        <input type="radio" name="passwordType" id="optionsRadios4" value="withdrawal">
+                        取款密码
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">原始密码</label>
+            <div class="col-lg-6">
+                <input type="password" class="form-control" name="oldPassword" placeholder="原始密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">新密码</label>
+            <div class="col-lg-6">
+                <input type="password" class="form-control" name="newPassword1" placeholder="新密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">新密码确认</label>
+            <div class="col-lg-6">
+                <input type="password" class="form-control" name="newPassword2" placeholder="新密码确认">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-3">
+                <button type="reset" class="btn btn-default">取消</button>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<form class="form-horizontal col-xs-6 col-xs-offset-3" action="/CapAccSys/MoneySave">
+    <fieldset>
+        <legend>存入资金</legend>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">存入金额</label>
+            <div class="input-group col-lg-6">
+                <input type="text" class="form-control" name="depositionSum" placeholder="存入金额">
+                <div class="input-group-addon">
+                    <span class="glyphicon ">￥</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-3">
+                <button type="reset" class="btn btn-default">取消</button>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<form class="form-horizontal col-xs-6 col-xs-offset-3" action="/CapAccSys/MoneyLoad" >
+    <fieldset>
+        <legend>取出资金</legend>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">取出金额</label>
+            <div class="input-group col-lg-6">
+                <input type="text" class="form-control" name="withdrawalSum" placeholder="存入金额">
+                <div class="input-group-addon">
+                    <span class="glyphicon ">￥</span>
+                </div>
+            </div>
+        </div><div class="form-group">
+        <label class="col-lg-3 control-label">取款密码</label>
+        <div class="input-group col-lg-6">
+            <input type="text" class="form-control" name="withdrawalPassword" placeholder="取款密码">
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-3">
+                <button type="reset" class="btn btn-default">取消</button>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<form class="form-horizontal col-xs-6 col-xs-offset-3" action="/CapAccSys/Lost">
+    <fieldset>
+        <legend>挂失账户</legend>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">身份证</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" name="id" placeholder="身份证">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">真实姓名</label>
+            <div class="col-lg-3">
+                <input type="password" class="form-control" name="name" placeholder="真实姓名">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">性别</label>
+            <div class="col-lg-10">
+                <div class="radio col-lg-2">
+                    <label>
+                        <input type="radio" name="gender" id="optionsRadios5" value="male" checked="">
+                        男
+                    </label>
+                </div>
+                <div class="radio col-lg-2">
+                    <label>
+                        <input type="radio" name="gender" id="optionsRadios6" value="female">
+                        女
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">家庭住址</label>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" name="address" placeholder="家庭住址">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-3">
+                <button type="reset" class="btn btn-default">取消</button>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<form class="form-horizontal col-xs-6 col-xs-offset-3" action="/CapAccSys/Delete">
+    <fieldset>
+        <legend>注销账户</legend>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">身份证</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" name="id" placeholder="身份证">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">真实姓名</label>
+            <div class="col-lg-3">
+                <input type="password" class="form-control" name="name" placeholder="真实姓名">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">性别</label>
+            <div class="col-lg-10">
+                <div class="radio col-lg-2">
+                    <label>
+                        <input type="radio" name="gender" value="male" checked="">
+                        男
+                    </label>
+                </div>
+                <div class="radio col-lg-2">
+                    <label>
+                        <input type="radio" name="gender" value="female">
+                        女
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">家庭住址</label>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" name="address" placeholder="家庭住址">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">取款密码</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" name="withdrawalPassword" placeholder="取款密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-3">
+                <button type="reset" class="btn btn-default">取消</button>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
