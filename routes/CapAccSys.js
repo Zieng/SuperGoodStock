@@ -11,7 +11,17 @@ var countryList = require('../models/country-list');
 
 router.get('/', function (req, res, next) {
     // res.send('CapAccSys_index');
-    res.render('CapAccSys_index');
+    if( req.cookies.user == undefined || req.cookies.pass == undefined )
+    {
+        // res.redirect('/login');
+        res.cookie('user', 'CapTest', { maxAge: 900000 });
+        res.cookie('pass', '123456', { maxAge: 900000 });
+        console.log('Set Cookie');
+
+        res.redirect('/CapAccSys');
+    }
+    else
+        res.render('CapAccSys_index');
 });
 
 router.post('/', function (req, res, next) {
@@ -74,12 +84,7 @@ router.get('/modify', function (req, res, next) {
 router.post('/modify', function (req, res, next) {
     if( req.cookies.user == undefined || req.cookies.pass == undefined )
     {
-        // res.redirect('/login');
-        res.cookie('user', 'CapTest', { maxAge: 900000 });
-        res.cookie('pass', '123456', { maxAge: 900000 });
-        console.log('Set Cookie');
-        // res.status(200).send();
-        res.redirect('/CapAccSys');
+        res.redirect('/login');
     }
     else
     {
@@ -87,7 +92,7 @@ router.post('/modify', function (req, res, next) {
             if( err )
                 throw err;
             if( obj == null )
-                console.log('user not found');
+                res.send('user not found');
             else
             {
                 console.log("cookie.user = "+req.cookies.user);
@@ -113,7 +118,11 @@ router.post('/modify', function (req, res, next) {
                     else
                         res.send('旧密码错误!!');
 
-                    obj.save();
+                    obj.save( function (err) {
+                        if( err )
+                            return next(err);
+                        res.send('成功修改密码');
+                    });
                 }
                 else
                 {
@@ -133,7 +142,30 @@ router.get('/MoneySave', function (req, res, next) {
 });
 
 router.post('/MoneySave', function (req, res, next) {
+    if( req.cookies.user == undefined || req.cookies.pass == undefined )
+    {
+        res.redirect('/login');
+    }
+    else
+    {
+        CapitalAccount.findOne({username: req.cookies.user}, function (err, obj) {
+            if( err )
+                throw err;
+            if( obj == null )
+                res.send('user not found');
+            else
+            {
+                var toSave = req.body.depositionSum;
+                obj.availableCapital = obj.availableCapital + toSave;
+                obj.save(function (err) {
+                    if( err )
+                        return next(err);
+                    res.send('成功存入'+toSave+'到账户中');
+                });
+            }
 
+        });
+    }
 });
 
 // MoneyLoad
@@ -142,7 +174,38 @@ router.get('/MoneyLoad', function (req, res, next) {
 });
 
 router.post('/MoneyLoad', function (req, res, next) {
+    if( req.cookies.user == undefined || req.cookies.pass == undefined )
+    {
+        res.redirect('/login');
+    }
+    else
+    {
+        CapitalAccount.findOne({username: req.cookies.user}, function (err, obj) {
+            if( err )
+                throw err;
+            if( obj == null )
+                res.send('user not found');
+            else
+            {
+                var withdrawalPassword = req.body.withdrawalPassword;
+                var money = req.body.withdrawalSum;
 
+                if( withdrawalPassword != obj.withdrawalPassword )
+                    res.send('取款密码不正确');
+                else if ( obj.availableCapital < money )
+                    res.send('账户余额不足');
+                else
+                {
+                    obj.availableCapital = obj.availableCapital - money;
+                    obj.save( function (err) {
+                        if( err )
+                            return next(err);
+                        res.send('成功取出'+money+'。');
+                    });
+                }
+            }
+        });
+    }
 });
 
 // Lost
@@ -151,7 +214,24 @@ router.get('/Lost', function (req, res, next) {
 });
 
 router.post('/Lost', function (req, res, next) {
+    if( req.cookies.user == undefined || req.cookies.pass == undefined )
+    {
+        res.redirect('/login');
+    }
+    else
+    {
+        CapitalAccount.findOne({username: req.cookies.user}, function (err, obj) {
+            if( err )
+                throw err;
+            if( obj == null )
+                res.send('user not found');
+            else
+            {
+                //todo
+            }
 
+        });
+    }
 });
 
 // Delete
@@ -160,7 +240,24 @@ router.get('/Delete', function (req, res, next) {
 });
 
 router.post('/Delete', function (req, res, next) {
+    if( req.cookies.user == undefined || req.cookies.pass == undefined )
+    {
+        res.redirect('/login');
+    }
+    else
+    {
+        CapitalAccount.findOne({username: req.cookies.user}, function (err, obj) {
+            if( err )
+                throw err;
+            if( obj == null )
+                res.send('user not found');
+            else
+            {
 
+            }
+
+        });
+    }
 });
 
 // Info
@@ -169,7 +266,24 @@ router.get('/Info', function (req, res, next) {
 });
 
 router.post('/Info', function (req, res, next) {
+    if( req.cookies.user == undefined || req.cookies.pass == undefined )
+    {
+        res.redirect('/login');
+    }
+    else
+    {
+        CapitalAccount.findOne({username: req.cookies.user}, function (err, obj) {
+            if( err )
+                throw err;
+            if( obj == null )
+                res.send('user not found');
+            else
+            {
 
+            }
+
+        });
+    }
 });
 
 module.exports = router;

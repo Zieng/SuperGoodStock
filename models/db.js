@@ -5,6 +5,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// for auto increment field
+var CounterSchema = Schema({
+    _id: {type: String, required: true},
+    seq: { type: Number, default: 0 }
+});
+var counter = mongoose.model('counter', CounterSchema);
+
 // SecuritiesAccount Schema
 var SecS = new Schema({
     saId: {type: Number, default: 0, required: true},
@@ -19,17 +26,41 @@ mongoose.model('SecuritiesAccount', SecS);
 var CapS = new Schema({
     caId:{type: Number, default: 0, required: true, unique: true},
     username: { type: String, default: 'null' , required: true},
+    truename: { type: String, default: 'tom'},
     loginPassword: { type: String, default: 'null', required: true },
     tradePassword: { type: String, default: 'null', required: true },
-    withdrawalPassword: {type: String, default: 'null', required: true},
-    availableCapital: {type: Number, default: 0},
-    frozenCapital:{type: Number, default: 0},
-    country: {type: String, default: 'China'},
+    withdrawalPassword: { type: String, default: 'null', required: true},
+    availableCapital: { type: Number, default: 0},
+    frozenCapital: { type: Number, default: 0},
+    personId: { type: Number, default: 0},
+    gender: { type: String, default: 'male'},
+    birthday: { type: Date, default: Date.now },
+    country: { type: String, default: 'China'},
     city: { type: String, default: 'HangZhou'},
-    email: {type: String, default: 'null'},
-    telephone: {type: Number, default: 13612345678 },
-    nextYearInterest: {type: Number, default: 0},
-    recentDate:{type: Date, default: Date.now }
+    address: { type: String, default: 'Earth'},
+    email: { type: String, default: 'null'},
+    telephone: { type: Number, default: 13612345678 },
+    nextYearInterest: { type: Number, default: 0},
+    recentDate: { type: Date, default: Date.now }
+});
+CapS.pre('save', function (next) {
+    var doc = this;
+    counter.findByIdAndUpdate({_id: 'CapitalAccount'}, {$inc: { seq: 1} }, function(error, obj)   {
+        if(error)
+            return next(error);
+        if( obj == null )
+        {
+            obj = new counter();
+            obj._id = 'CapitalAccount';
+            obj.seq = 1;
+            obj.save( function (err) {
+                if( err )
+                    return next(err);
+            });
+        }
+        doc.caId = obj.seq;
+        next();
+    });
 });
 mongoose.model('CapitalAccount', CapS);
 
