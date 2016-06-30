@@ -76,12 +76,61 @@ router.post('/create', function (req, res, next) {
 
 });
 
-// Modify
-router.get('/modify', function (req, res, next) {
-    res.render('CapAccSys_modify');
+// update info
+router.get('/editinfo', function (req, res, next) {
+    res.send('Edit Info');
+});
+router.post('/editinfo', function (req, res, next) {
+    if( req.cookies.user == undefined || req.cookies.pass == undefined )
+    {
+        res.redirect('/login');
+    }
+    else
+    {
+        CapitalAccount.findOne({username: req.cookies.user}, function (err, obj) {
+            if( err )
+                throw err;
+            if( obj == null )
+                res.send('user not found');
+            else
+            {
+                
+            }
+
+        });
+    }
 });
 
-router.post('/modify', function (req, res, next) {
+// activate account
+router.get('/activate', function (req, res, next) {
+    res.send('activate account');
+});
+router.post('/activate', function (req, res, next) {
+    if( req.cookies.user == undefined || req.cookies.pass == undefined )
+    {
+        res.redirect('/login');
+    }
+    else
+    {
+        CapitalAccount.findOne({username: req.cookies.user}, function (err, obj) {
+            if( err )
+                throw err;
+            if( obj == null )
+                res.send('user not found');
+            else
+            {
+
+            }
+        });
+    }
+});
+
+// Modify
+router.get('/changePass', function (req, res, next) {
+    res.render('CapAccSys_changePass');
+});
+
+router.post('/changePass', function (req, res, next) {
     if( req.cookies.user == undefined || req.cookies.pass == undefined )
     {
         res.redirect('/login');
