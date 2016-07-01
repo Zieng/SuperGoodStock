@@ -17,7 +17,7 @@ $(document).ready(function(){
 			}
 		},
 		success	: function(responseText, status, xhr, $form){
-			if (status == 'success') window.location.href = '/home';
+			if (status == 'success') window.location.href = '/CapAccSys';
 		},
 		error : function(e){
 			lv.showLoginError('登录 失败', '请检查用户名和密码');

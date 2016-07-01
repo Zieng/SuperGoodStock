@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <script src="../assets/js/jquery-2.2.3.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+</head>
+<body>
+    <form class="form-horizontal col-xs-6 col-xs-offset-3" action="/CapAccSys/Delete" method="post">
+        <fieldset>
+            <legend>注销账户</legend>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">身份证</label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" name="id" placeholder="身份证">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">真实姓名</label>
+                <div class="col-lg-3">
+                    <input type="password" class="form-control" name="name" placeholder="真实姓名">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">性别</label>
+                <div class="col-lg-10">
+                    <div class="radio col-lg-2">
+                        <label>
+                            <input type="radio" name="gender" value="male" checked="">
+                            男
+                        </label>
+                    </div>
+                    <div class="radio col-lg-2">
+                        <label>
+                            <input type="radio" name="gender" value="female">
+                            女
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">家庭住址</label>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" name="address" placeholder="家庭住址">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">取款密码</label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" name="withdrawalPassword" placeholder="取款密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-3">
+                    <button type="reset" class="btn btn-default">取消</button>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>

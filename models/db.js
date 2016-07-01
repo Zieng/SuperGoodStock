@@ -25,8 +25,12 @@ mongoose.model('SecuritiesAccount', SecS);
 // CapitalAccount Schema
 var CapS = new Schema({
     caId:{type: Number, default: 0, required: true, unique: true},
+    saID: [{
+        type: Schema.Types.ObjectId,
+        ref: 'SecS'
+    }],
     username: { type: String, default: 'null' , required: true},
-    truename: { type: String, default: 'tom'},
+    trueName: { type: String, default: 'tom'},
     loginPassword: { type: String, default: 'null', required: true },
     tradePassword: { type: String, default: 'null', required: true },
     withdrawalPassword: { type: String, default: 'null', required: true},
@@ -41,7 +45,8 @@ var CapS = new Schema({
     email: { type: String, default: 'null'},
     telephone: { type: Number, default: 13612345678 },
     nextYearInterest: { type: Number, default: 0},
-    recentDate: { type: Date, default: Date.now }
+    recentDate: { type: Date, default: Date.now },
+    isLost: { type: Boolean, default: false}
 });
 CapS.pre('save', function (next) {
     var doc = this;

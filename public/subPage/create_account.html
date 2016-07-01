@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <script src="../assets/js/jquery-2.2.3.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+</head>
+<body>
+    <form class="form-horizontal col-xs-6 col-xs-offset-3" action="/CapAccSys/activate" method="post">
+        <fieldset>
+            <legend>开通账户</legend>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">交易密码</label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" name="transactionPassword1" placeholder="交易密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">交易密码确认</label>
+                <div class="col-lg-6">
+                    <input type="password" class="form-control" name="transactionPassword2" placeholder="交易密码确认">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">取款密码</label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" name="withdrawalPassword1" placeholder="取款密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">取款密码确认</label>
+                <div class="col-lg-6">
+                    <input type="password" class="form-control" name="withdrawalPassword2" placeholder="取款易密码确认">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-3">
+                    <button type="reset" class="btn btn-default">取消</button>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>
