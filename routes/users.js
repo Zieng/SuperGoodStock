@@ -28,19 +28,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/add', function (req, res, next) {
-    var newAccount = new CapitalAccount();
-
-    // test
-    newAccount.caId = Math.random();
-    newAccount.username = 'test'+Math.random();
-    newAccount.loginPassword = '123456';
-    newAccount.tradePassword = '123456';
-    
-    newAccount.save( function (err) {
+    var newAccount = new SecAccount();
+    newAccount.saId = 72;
+    newAccount.tytpe = 0;
+    newAccount.save(function (err) {
         if(err)
             return next(err);
-        res.status(200).send('Save ok');
-    });
+        res.send('add a new Securities Account');
+    })
 });
 
 router.get('/del', function (req, res, next) {

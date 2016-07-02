@@ -16,12 +16,12 @@ router.get('/', function (req, res, next) {
     // res.send('CapAccSys_index');
     if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
     {
-        // res.redirect('/login');
-        res.cookie('capUser', 'CapTest', { maxAge: 900000 });
-        res.cookie('capPass', '123456', { maxAge: 900000 });
-        console.log('Set Cookie');
+        // // res.redirect('/login');
+        // res.cookie('capUser', 'CapTest', { maxAge: 900000 });
+        // res.cookie('capPass', '123456', { maxAge: 900000 });
+        // console.log('Set Cookie');
 
-        res.redirect('/CapAccSys');
+        res.redirect('/CapAccSys/login');
     }
     else
         res.render('CapAccSys_index');
@@ -116,7 +116,6 @@ router.post('/login', function (req, res, next) {
 
         }
     });
-    // res.send("post login");
 });
 
 router.get('/logout', function (req, res, next) {
@@ -153,15 +152,15 @@ router.post('/editinfo', function (req, res, next) {
                 res.send('user not found');
             else
             {
-                SecuritiesAccount.findOne({saId: securitiesAccount}, function (err2, secAccout) {
+                SecuritiesAccount.findOne({saId: securitiesAccount}, function (err2, secAccount) {
                     if( err2 )
                         throw err2;
-                    if( secAccout == null )
+                    if( secAccount == null )
                         res.send('No such Securities Account!');
                     else
                     {
                         obj.personId = personId;
-                        obj.saID = securitiesAccount;
+                        obj.saID = secAccount.saID;
                         obj.trueName = trueName;
                         obj.gender = gender;
                         obj.address = address;
@@ -291,23 +290,36 @@ router.post('/MoneySave', function (req, res, next) {
     }
     else
     {
-        CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
-            if( err )
-                throw err;
-            if( obj == null )
-                res.send('user not found');
-            else
-            {
-                var toSave = req.body.depositionSum;
-                obj.availableCapital = obj.availableCapital + toSave;
-                obj.save(function (err) {
-                    if( err )
-                        return next(err);
-                    res.send('成功存入'+toSave+'到账户中');
-                });
-            }
+        var toSave = req.body.depositionSum;
+        if( toSave <= 0 )
+            res.send('存入金额必须为正数');
+        else 
+        {
+            CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+                if( err )
+                    throw err;
+                if( obj == null )
+                    res.send('user not found');
+                else
+                {
+                    if( obj.isLost == false )
+                    {
 
-        });
+                        obj.availableCapital = obj.availableCapital + toSave;
+                        obj.save(function (err) {
+                            if( err )
+                                return next(err);
+                            res.send('成功存入'+toSave+'到账户中');
+                        });
+                    }
+                    else
+                    {
+                        res.send('账户已冻结,不能进行存款操作');
+                    }
+                }
+
+            });
+        }
     }
 });
 
@@ -323,31 +335,42 @@ router.post('/MoneyLoad', function (req, res, next) {
     }
     else
     {
-        CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
-            if( err )
-                throw err;
-            if( obj == null )
-                res.send('user not found');
-            else
-            {
-                var withdrawalPassword = req.body.withdrawalPassword;
-                var money = req.body.withdrawalSum;
-
-                if( withdrawalPassword != obj.withdrawalPassword )
-                    res.send('取款密码不正确');
-                else if ( obj.availableCapital < money )
-                    res.send('账户余额不足');
+        var money = req.body.withdrawalSum;
+        
+        if( money <= 0 )
+            res.send('取款金额必须为正数');
+        else 
+        {
+            CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+                if( err )
+                    throw err;
+                if( obj == null )
+                    res.send('user not found');
                 else
                 {
-                    obj.availableCapital = obj.availableCapital - money;
-                    obj.save( function (err) {
-                        if( err )
-                            return next(err);
-                        res.send('成功取出'+money+'。');
-                    });
+                    var withdrawalPassword = req.body.withdrawalPassword;
+
+                    if( withdrawalPassword != obj.withdrawalPassword )
+                        res.send('取款密码不正确');
+                    else if ( obj.availableCapital < money )
+                        res.send('账户余额不足');
+                    else
+                    {
+                        if( obj.isLost == false)
+                        {
+                            obj.availableCapital = obj.availableCapital - money;
+                            obj.save( function (err) {
+                                if( err )
+                                    return next(err);
+                                res.send('成功取出'+money+'。');
+                            });
+                        }
+                        else
+                            res.send('账户已冻结,不能进行取款操作');
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 });
 
@@ -425,7 +448,12 @@ router.post('/Delete', function (req, res, next) {
                         if(err2)
                             return next(err2);
                         else
-                            res.send('成功注销账户');
+                        {
+                            // clear cookies
+                            res.cookie('capUser', "", { expires: new Date() });
+                            res.cookie('capPass', "", { expires: new Date() });
+                            res.redirect('/CapAccSys/signup');
+                        }
                     });
                 }
                 else
@@ -455,7 +483,12 @@ router.post('/Info', function (req, res, next) {
                 res.send('user not found');
             else
             {
-
+                if( obj.isLost )
+                    res.send('账户已冻结,请先解冻');
+                else 
+                {
+                    //todo
+                }
             }
 
         });
