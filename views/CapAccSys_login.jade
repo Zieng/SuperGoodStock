@@ -7,7 +7,7 @@ block content
 
     #login.center-vertical
         form.well(id='form-login', method='post')
-            h2 欢迎登陆SGS资金账户
+            h2 欢迎登陆资金账户
             h6 请输入您的账户和密码
             .form-group
                 label 用户名
@@ -26,12 +26,12 @@ block content
             hr
             .btm-links
                 #forgot-password
-                    a(href='#') 忘记密码?
+                    a(href='/CapAccSys/forgetpass') 忘记密码?
                 #create-account
                     a(href='/CapAccSys/signup') 创建新账号
             .clearfix
 
-    //include modals/alert
+    include modals/alert
     //include modals/lost-password
 
 block scripts

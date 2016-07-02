@@ -14,19 +14,13 @@ var countryList = require('../models/country-list');
 
 router.get('/', function (req, res, next) {
     // res.send('CapAccSys_index');
-    if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
     {
-        // // res.redirect('/login');
-        // res.cookie('capUser', 'CapTest', { maxAge: 900000 });
-        // res.cookie('capPass', '123456', { maxAge: 900000 });
-        // console.log('Set Cookie');
-
         res.redirect('/CapAccSys/login');
     }
     else
         res.render('CapAccSys_index');
 });
-
 router.post('/', function (req, res, next) {
     res.send('You submit a form in /CapAccSys');
 });
@@ -34,12 +28,11 @@ router.post('/', function (req, res, next) {
 
 router.get('/signup', function (req, res, next) {
     // clear cookies
-    res.cookie('capUser', "", { expires: new Date() });
+    res.cookie('caId', "", { expires: new Date() });
     res.cookie('capPass', "", { expires: new Date() });
 
     res.render('CapAccSys_signup', { title: '账户注册', countries : countryList  });
 });
-
 router.post('/signup', function (req, res, next) {
     var username = req.body['username'];
     var email = req.body['email'];
@@ -69,15 +62,16 @@ router.post('/signup', function (req, res, next) {
         newAccount.save( function (err) {
             if(err)
                 return next(err);
-            // res.status(200).send('Save ok');
+            res.status(200);
             res.redirect('/CapAccSys/login');
         });
     }
 
 });
 
+
 router.get('/login', function(req, res, next) {
-    if (req.cookies.capUser == undefined || req.cookies.capPass == undefined)
+    if (req.cookies.caId == undefined || req.cookies.capPass == undefined)
     {
         res.render('CapAccSys_login', { title: '登陆' });
     }
@@ -86,10 +80,9 @@ router.get('/login', function(req, res, next) {
         res.send("use cookie auto login");
     }
 });
-
 router.post('/login', function (req, res, next) {
     // clear cookies
-    res.cookie('capUser', "", { expires: new Date() });
+    res.cookie('caId', "", { expires: new Date() });
     res.cookie('capPass', "", { expires: new Date() });
 
     var username = req.body['user'];
@@ -107,7 +100,7 @@ router.post('/login', function (req, res, next) {
             {
                 // res.send(JSON.stringify(doc));
 
-                res.cookie('capUser', username, { maxAge: 900000 });
+                res.cookie('caId', doc.caId, { maxAge: 900000 });
                 res.cookie('capPass', password, { maxAge: 900000 });
 
                 // console.log('hello');
@@ -118,14 +111,14 @@ router.post('/login', function (req, res, next) {
     });
 });
 
+
 router.get('/logout', function (req, res, next) {
     // clear cookies
-    res.cookie('capUser', "", { expires: new Date() });
+    res.cookie('caId', "", { expires: new Date() });
     res.cookie('capPass', "", { expires: new Date() });
 
     res.redirect('/CapAccSys/login');
 });
-
 
 
 // update info
@@ -133,7 +126,7 @@ router.get('/editinfo', function (req, res, next) {
     res.send('Edit Info');
 });
 router.post('/editinfo', function (req, res, next) {
-    if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
     {
         res.redirect('/CapAccSys/login');
     }
@@ -145,7 +138,7 @@ router.post('/editinfo', function (req, res, next) {
         var gender = req.body.genderRadios;
         var address = req.body.address;
 
-        CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+        CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
             if( err )
                 throw err;
             if( obj == null )
@@ -178,12 +171,13 @@ router.post('/editinfo', function (req, res, next) {
     }
 });
 
+
 // activate account
 router.get('/activate', function (req, res, next) {
     res.send('activate account');
 });
 router.post('/activate', function (req, res, next) {
-    if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
     {
         res.redirect('/CapAccSys/login');
     }
@@ -198,7 +192,7 @@ router.post('/activate', function (req, res, next) {
             res.send('输入的两次密码不符');
         else
         {
-            CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+            CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
                 if( err )
                     throw err;
                 if( obj == null )
@@ -218,26 +212,26 @@ router.post('/activate', function (req, res, next) {
     }
 });
 
+
 // Modify
 router.get('/Modify', function (req, res, next) {
     res.render('CapAccSys_modify');
 });
-
 router.post('/Modify', function (req, res, next) {
-    if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
     {
         res.redirect('/CapAccSys/login');
     }
     else
     {
-        CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+        CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
             if( err )
                 throw err;
             if( obj == null )
                 res.send('user not found');
             else
             {
-                console.log("cookie.capUser = "+req.cookies.capUser);
+                console.log("cookie.caId = "+req.cookies.caId);
 
                 var passwordType = req.body.passwordType;
                 var oldPassword = req.body.oldPassword;
@@ -278,13 +272,13 @@ router.post('/Modify', function (req, res, next) {
 
 });
 
+
 // MoneySave
 router.get('/MoneySave', function (req, res, next) {
     res.render('CapAccSys_moneysave');
 });
-
 router.post('/MoneySave', function (req, res, next) {
-    if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
     {
         res.redirect('/login');
     }
@@ -295,7 +289,7 @@ router.post('/MoneySave', function (req, res, next) {
             res.send('存入金额必须为正数');
         else 
         {
-            CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+            CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
                 if( err )
                     throw err;
                 if( obj == null )
@@ -323,13 +317,13 @@ router.post('/MoneySave', function (req, res, next) {
     }
 });
 
+
 // MoneyLoad
 router.get('/MoneyLoad', function (req, res, next) {
     res.render('CapAccSys_moneyload');
 });
-
 router.post('/MoneyLoad', function (req, res, next) {
-    if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
     {
         res.redirect('/login');
     }
@@ -341,7 +335,7 @@ router.post('/MoneyLoad', function (req, res, next) {
             res.send('取款金额必须为正数');
         else 
         {
-            CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+            CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
                 if( err )
                     throw err;
                 if( obj == null )
@@ -374,13 +368,13 @@ router.post('/MoneyLoad', function (req, res, next) {
     }
 });
 
+
 // Lost
 router.get('/Lost', function (req, res, next) {
     res.render('CapAccSys_lost');
 });
-
 router.post('/Lost', function (req, res, next) {
-    if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
     {
         res.redirect('/login');
     }
@@ -391,7 +385,7 @@ router.post('/Lost', function (req, res, next) {
         var gender = req.body.gender;
         var address = req.body.address;
 
-        CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+        CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
             if( err )
                 throw err;
             if( obj == null )
@@ -415,13 +409,13 @@ router.post('/Lost', function (req, res, next) {
     }
 });
 
+
 // Delete
 router.get('/Delete', function (req, res, next) {
     res.render('CapAccSys_delete');
 });
-
 router.post('/Delete', function (req, res, next) {
-    if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
     {
         res.redirect('/login');
     }
@@ -434,7 +428,7 @@ router.post('/Delete', function (req, res, next) {
         var withdrawalPassword = req.body.withdrawalPassword;
         var remove = false;
 
-        CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+        CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
             if( err )
                 throw err;
             if( obj == null )
@@ -444,13 +438,13 @@ router.post('/Delete', function (req, res, next) {
                 if( personId == obj.personId && trueName == obj.trueName && gender == obj.gender
                     && withdrawalPassword == obj.withdrawalPassword )
                 {
-                    CapitalAccount.remove({username: req.cookies.capUser}, function (err2) {
+                    CapitalAccount.remove({caId: req.cookies.caId}, function (err2) {
                         if(err2)
                             return next(err2);
                         else
                         {
                             // clear cookies
-                            res.cookie('capUser', "", { expires: new Date() });
+                            res.cookie('caId', "", { expires: new Date() });
                             res.cookie('capPass', "", { expires: new Date() });
                             res.redirect('/CapAccSys/signup');
                         }
@@ -464,19 +458,19 @@ router.post('/Delete', function (req, res, next) {
     }
 });
 
+
 // Info
 router.get('/Info', function (req, res, next) {
     res.render('CapAccSys_info');
 });
-
 router.post('/Info', function (req, res, next) {
-    if( req.cookies.capUser == undefined || req.cookies.capPass == undefined )
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
     {
         res.redirect('/login');
     }
     else
     {
-        CapitalAccount.findOne({username: req.cookies.capUser}, function (err, obj) {
+        CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
             if( err )
                 throw err;
             if( obj == null )
@@ -487,12 +481,17 @@ router.post('/Info', function (req, res, next) {
                     res.send('账户已冻结,请先解冻');
                 else 
                 {
-                    //todo
+                    res.json(JSON.stringify(obj));
                 }
             }
-
         });
     }
+});
+
+
+router.get('/forgetpass', function (req, res, enext) {
+    res.send('请联系管理员');
+    res.end();
 });
 
 module.exports = router;
