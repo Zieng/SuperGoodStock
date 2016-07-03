@@ -1,0 +1,18 @@
+extends layout
+block stylesheet
+  link(rel='stylesheet', href='/stylesheets/SecAccSys/login.css')
+block content
+  h1= title
+  .container
+    form(action="/SecAccSys/login", method='post').form-login
+      h2.form-login-heading 登录
+      input(type="text", name="uname", placeholder="用户名")#inName.form-control
+      input(type="password", name="upass", placeholder="密码")#inPassword.form-control
+      .form-group
+        input(type="radio", name="utype" value="normal", checked="true")
+        label 普通用户
+        input(type="radio", name="utype" value="admin")
+        label 管理员
+       .btn-group
+          input(type="submit", value="登录")
+          a(href="/SecAccSys/register", style="float: right;padding: 3px; margin-left: 30px") 注册

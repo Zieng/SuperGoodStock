@@ -1,0 +1,70 @@
+//
+   Created by wizard on 2016/6/11.
+
+extends layout
+block stylesheet
+  link(rel='stylesheet', href='/stylesheets/SecAccSys/modify.css')
+block content
+  h1(style="text-align:center;") 修改信息
+  form(action="/SecAccSys/register?MCorporate", method="post")
+    table.table
+      tbody
+        tr
+          td 法人
+          td
+        tr
+          td ID
+          td
+            input(type="text", value="#{stockID}", disabled="true")
+        tr
+          td 法人登记号码
+          td
+            input(type="text", name="docid", value="#{docid}")
+        tr
+        tr
+          td 姓名
+          td
+            input(type="text", name="fname", value="#{fname}")
+        tr
+          td 身份证号
+          td
+            input(type="text", name="fidno", value="#{fidno}")
+        tr
+          td 联系电话
+          td
+            input(type="text", name="fphone", value="#{fphone}")
+        tr
+          td 联系住址
+          td
+            input(type="text", name="faddr", value="#{faddr}")
+    table.table
+      tbody
+        tr
+          td 授权交易执行人
+          td
+        tr
+          td 姓名
+          td
+            input(type="text", name="name", value="#{name}")
+        tr
+          td 身份证号
+          td
+            input(type="text", name="idno", value="#{idno}")
+        tr
+          td 联系电话
+          td
+            input(type="text", name="phone", value="#{phone}")
+        tr
+          td 联系地址
+          td
+            input(type="text", name="addr", value="#{addr}")
+        tr
+          td 密码
+          td
+            input(type="password", name="password")
+        tr
+          td 确认密码
+          td
+            input(type="password", name="password2")
+    .form-group
+      input(type="submit", value="提交")

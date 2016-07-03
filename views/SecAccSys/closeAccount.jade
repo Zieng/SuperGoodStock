@@ -1,0 +1,55 @@
+//
+   Created by wizard on 2016/6/12.
+
+extends layout
+block stylesheet
+  link(rel='stylesheet', href='/stylesheets/SecAccSys/register.css')
+  script(type='text/javascript', src='/javascripts/SecAccSys/register.js')
+block content
+  h1(style="text-align:center;") 销户
+
+  .switch
+    span(onclick="swit(0)")#indi 个人
+    span(onclick="swit(1)")#corp 法人
+
+  #individual.container
+    form(action="SecAccSys/closeAccount?Individual", method="post")
+      table.table
+        tbody
+          tr
+            td ID
+            td
+              input(type="text", name="stockid")
+          tr
+            td 姓名
+            td
+              input(type="text", name="name")
+          tr
+            td 身份证号
+            td
+              input(type="text", name="idno")
+      .form-group
+        input(type="submit", value="提交")
+  #corporate.container
+    form(action="SecAccSys/closeAccount?Corporate", method="post")
+      table.table
+        tbody
+          tr
+            td ID
+            td
+              input(type="text", name="stockid")
+          tr
+            td 法人登记号码
+            td
+              input(type="text", name="docid")
+          tr
+          tr
+            td 法人姓名
+            td
+              input(type="text", name="fname")
+          tr
+            td 身份证号
+            td
+              input(type="text", name="fidno")
+      .form-group
+        input(type="submit", value="提交")
