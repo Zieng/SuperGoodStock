@@ -6,14 +6,14 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-var CapitalAccount = mongoose.model('CapitalAccount');
+//var CapitalAccount = mongoose.model('CapitalAccount');
 var SecuritiesAccount = mongoose.model('SecuritiesAccount');
 
 var countryList = require('../models/country-list');
 
 
 router.get('/', function (req, res, next) {
-    if( req.cookies.secId == undefined || req.cookies.secPass == undefined )
+    if( req.cookies.saId == undefined || req.cookies.secPass == undefined )
     {
         res.redirect('/SecAccSys/login');
     }
@@ -27,14 +27,14 @@ router.post('/', function (req, res, next) {
 
 router.get('/register', function (req, res, next) {
     // clear cookies
-    res.cookie('secId', "", { expires: new Date() });
+    res.cookie('saId', "", { expires: new Date() });
     res.cookie('secPass', "", { expires: new Date() });
 
     res.render('SecAccSys/register', { title: '账户注册', countries : countryList  });
 });
 router.post('/register', function (req, res, next) {
     var c = 0;
-    console.log(req.query['Corporate']);
+    console.log(req.query['Corporate'] == 0);
     if(req.query['Corporate'] == 1){
         c = 1;
     }
@@ -63,28 +63,52 @@ router.post('/register', function (req, res, next) {
         var company = req.body['company'];
         var password = req.body['password'];
     }
-    /*
+
     var newAccount = new SecuritiesAccount();
-    newAccount.secId = Math.random();
-    newAccount.username = username;
-    newAccount.loginPassword = loginPass;
-    newAccount.country = country;
-    newAccount.city = city;
-    newAccount.email = email;
-    newAccount.telephone = telephone;
+
+    if (c==0 && newAccount.find({"userID" : userIdno, "isActivated" : 1}).count() > 0) {
+        res.send("身份证号已被使用!");
+    }
+
+    if (c==0 && newAccount.find({"docID" : docid, "isActivated" : 1}).count() > 0) {
+        res.send("法人编号已被使用!");
+    }
+
+    newAccount.saId = Math.random();
+    newAccount.name = username;
+    newAccount.type = c;
+    newAccount.tel = telephone;
+    newAccount.userID = userIdno;
+    newAccount.addr = addr;
+    newAccount.career = career;
+    newAccount.degree = degree;
+    newAccount.company = company;
+    newAccount.password = password;
+    newAccount.isActivated = 1;
+
+    if (c==1) {
+        newAccount.docID = docid;
+        newAccount.fname = fname;
+        newAccount.ftel = fphone;
+        newAccount.faddr = faddr;
+    }
+
+    if (c==0) {
+        newAccount.userSex = usersex;
+    }
 
     newAccount.save( function (err) {
         if(err)
             return next(err);
         res.status(200);
         res.redirect('/SecAccSys/login');
-    });*/
+    });
 
 });
 
 
 router.get('/login', function(req, res, next) {
-    if (req.cookies.secId == undefined || req.cookies.secPass == undefined)
+    if (req.cookies.saId == undefined || req.cookies.secPass == undefined)
     {
         res.render('SecAccSys/login', { title: '登陆' });
     }
@@ -95,7 +119,7 @@ router.get('/login', function(req, res, next) {
 });
 router.post('/login', function (req, res, next) {
     // clear cookies
-    res.cookie('secId', "", { expires: new Date() });
+    res.cookie('saId', "", { expires: new Date() });
     res.cookie('secPass', "", { expires: new Date() });
 
     var username = req.body['user'];
@@ -113,7 +137,7 @@ router.post('/login', function (req, res, next) {
             {
                 // res.send(JSON.stringify(doc));
 
-                res.cookie('secId', doc.secId, { maxAge: 900000 });
+                res.cookie('saId', doc.saId, { maxAge: 900000 });
                 res.cookie('secPass', password, { maxAge: 900000 });
 
                 // console.log('hello');
@@ -127,60 +151,18 @@ router.post('/login', function (req, res, next) {
 
 /*router.get('/logout', function (req, res, next) {
     // clear cookies
-    res.cookie('secId', "", { expires: new Date() });
+    res.cookie('saId', "", { expires: new Date() });
     res.cookie('secPass', "", { expires: new Date() });
 
     res.redirect('/SecAccSys/login');
 });*/
-
-
-// activate account
-/*router.get('/activate', function (req, res, next) {
-    res.send('activate account');
-});
-router.post('/activate', function (req, res, next) {
-    if( req.cookies.secId == undefined || req.cookies.secPass == undefined )
-    {
-        res.redirect('/SecAccSys/login');
-    }
-    else
-    {
-        var tradePassword = req.body.transactionPassword1;
-        var tradePassword_confirm = req.body.transactionPassword2;
-        var withdrawalPassword = req.body.withdrawalPassword1;
-        var withdrawalPassword_confirm = req.body.withdrawalPassword2;
-
-        if( tradePassword != tradePassword_confirm || withdrawalPassword != withdrawalPassword_confirm)
-            res.send('输入的两次密码不符');
-        else
-        {
-            SecuritiesAccount.findOne({secId: req.cookies.secId}, function (err, obj) {
-                if( err )
-                    throw err;
-                if( obj == null )
-                    res.send('user not found');
-                else
-                {
-                    obj.tradePassword = tradePassword;
-                    obj.withdrawalPassword = withdrawalPassword;
-                    obj.save( function (err) {
-                        if( err )
-                            return next(err);
-                        res.send('开通账户成功');
-                    })
-                }
-            });
-        }
-    }
-});*/
-
 
 // Lost
 router.get('/Lost', function (req, res, next) {
     res.render('SecAccSys/lossReport');
 });
 router.post('/Lost', function (req, res, next) {
-    if( req.cookies.secId == undefined || req.cookies.secPass == undefined )
+    if( req.cookies.saId == undefined || req.cookies.secPass == undefined )
     {
         res.redirect('/login');
     }
@@ -201,13 +183,9 @@ router.post('/Lost', function (req, res, next) {
             var docid = req.body['docid'];
             var fname = req.body['fname'];
             var fidno = req.body['fidno'];
-        } 
-/*        var personId = req.body.id;
-        var trueName = req.body.name;
-        var gender = req.body.gender;
-        var address = req.body.address;
-
-        SecuritiesAccount.findOne({secId: req.cookies.secId}, function (err, obj) {
+        }
+/*
+        SecuritiesAccount.findOne({userID: req.cookies.saId}, function (err, obj) {
             if( err )
                 throw err;
             if( obj == null )
@@ -237,7 +215,7 @@ router.get('/Delete', function (req, res, next) {
     res.render('SecAccSys/closeAccount');
 });
 router.post('/Delete', function (req, res, next) {
-    if( req.cookies.secId == undefined || req.cookies.secPass == undefined )
+    if( req.cookies.saId == undefined || req.cookies.secPass == undefined )
     {
         res.redirect('/login');
     }
@@ -266,8 +244,8 @@ router.post('/Delete', function (req, res, next) {
         var address = req.body.address;
         var withdrawalPassword = req.body.withdrawalPassword;
         var remove = false;
-
-        SecuritiesAccount.findOne({secId: req.cookies.secId}, function (err, obj) {
+/*
+        SecuritiesAccount.findOne({saId: req.cookies.saId}, function (err, obj) {
             if( err )
                 throw err;
             if( obj == null )
@@ -277,13 +255,13 @@ router.post('/Delete', function (req, res, next) {
                 if( personId == obj.personId && trueName == obj.trueName && gender == obj.gender
                     && withdrawalPassword == obj.withdrawalPassword )
                 {
-                    SecuritiesAccount.remove({secId: req.cookies.secId}, function (err2) {
+                    SecuritiesAccount.remove({saId: req.cookies.saId}, function (err2) {
                         if(err2)
                             return next(err2);
                         else
                         {
                             // clear cookies
-                            res.cookie('secId', "", { expires: new Date() });
+                            res.cookie('saId', "", { expires: new Date() });
                             res.cookie('secPass', "", { expires: new Date() });
                             res.redirect('/SecAccSys/signup');
                         }
@@ -293,7 +271,7 @@ router.post('/Delete', function (req, res, next) {
                     res.send('账户验证失败!请检查是否输入有误');
             }
 
-        });
+        });*/
     }
 });
 
