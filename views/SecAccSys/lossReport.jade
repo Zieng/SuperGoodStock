@@ -13,7 +13,7 @@ block content
     span(onclick="swit(1)")#corp 法人
 
   #individual.container
-    form(action="lossReport?Individual", method="post")
+    form(action="lossReport?Corporate=0", method="post")
       table.table
         tbody
           tr
@@ -31,7 +31,7 @@ block content
       .form-group
         input(type="submit", value="提交")
   #corporate.container
-    form(action="lossReport?Corporate", method="post")
+    form(action="lossReport?Corporate=1", method="post")
       table.table
         tbody
           tr

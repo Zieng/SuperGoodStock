@@ -33,38 +33,52 @@ router.get('/register', function (req, res, next) {
     res.render('SecAccSys/register', { title: '账户注册', countries : countryList  });
 });
 router.post('/register', function (req, res, next) {
-    var username = req.body['username'];
-    var email = req.body['email'];
-    var country = req.body['country'];
-    var city = req.body['city'];
-    var telephone = req.body['telephone'];
-    var loginPass = req.body['loginPassword'];
-    var loginPass_confirm = req.body['loginPassword_confirm'];
-
-    if( ! username.trim() )
-        res.send('用户名不能为空');
-    else if( !loginPass.trim() )
-        res.send('登录密码不能为空');
-    else if( loginPass != loginPass_confirm )
-        res.send('两次输入的登录密码不符');
-    else
-    {
-        var newAccount = new SecuritiesAccount();
-        newAccount.secId = Math.random();
-        newAccount.username = username;
-        newAccount.loginPassword = loginPass;
-        newAccount.country = country;
-        newAccount.city = city;
-        newAccount.email = email;
-        newAccount.telephone = telephone;
-
-        newAccount.save( function (err) {
-            if(err)
-                return next(err);
-            res.status(200);
-            res.redirect('/SecAccSys/login');
-        });
+    var c = 0;
+    console.log(req.query['Corporate']);
+    if(req.query['Corporate'] == 1){
+        c = 1;
     }
+    if(c == 0){
+        var username = req.body['name'];
+        var usertype = 'Individual';
+        var usersex = req.body['sex'];
+        var userIdno = req.body['idno'];
+        var telephone = req.body['phone'];
+        var addr = req.body['addr'];
+        var career = req.body['career'];
+        var degree = req.body['degree'];
+        var company = req.body['company'];
+        var password = req.body['password'];
+    } else {
+        var usertype = 'Corporate';
+        var docid = req.body['docid'];
+        var fname = req.body['fname'];
+        var fidno = req.body['fidno'];
+        var fphone = req.body['fphone'];
+        var faddr = req.body['addr'];
+        var username = req.body['name'];
+        var userIdno = req.body['idno'];
+        var telephone = req.body['phone'];
+        var addr = req.body['addr'];
+        var company = req.body['company'];
+        var password = req.body['password'];
+    }
+    /*
+    var newAccount = new SecuritiesAccount();
+    newAccount.secId = Math.random();
+    newAccount.username = username;
+    newAccount.loginPassword = loginPass;
+    newAccount.country = country;
+    newAccount.city = city;
+    newAccount.email = email;
+    newAccount.telephone = telephone;
+
+    newAccount.save( function (err) {
+        if(err)
+            return next(err);
+        res.status(200);
+        res.redirect('/SecAccSys/login');
+    });*/
 
 });
 
@@ -111,17 +125,17 @@ router.post('/login', function (req, res, next) {
 });
 
 
-router.get('/logout', function (req, res, next) {
+/*router.get('/logout', function (req, res, next) {
     // clear cookies
     res.cookie('secId', "", { expires: new Date() });
     res.cookie('secPass', "", { expires: new Date() });
 
     res.redirect('/SecAccSys/login');
-});
+});*/
 
 
 // activate account
-router.get('/activate', function (req, res, next) {
+/*router.get('/activate', function (req, res, next) {
     res.send('activate account');
 });
 router.post('/activate', function (req, res, next) {
@@ -158,7 +172,7 @@ router.post('/activate', function (req, res, next) {
             });
         }
     }
-});
+});*/
 
 
 // Lost
@@ -172,7 +186,23 @@ router.post('/Lost', function (req, res, next) {
     }
     else
     {
-        var personId = req.body.id;
+        var c = 0;
+        console.log(req.query['Corporate']);
+        if(req.query['Corporate'] == 1){
+            c = 1;
+        }
+        if(c = 0){
+            var id = req.body['stockid'];
+            var name = req.body['name'];
+            var idno = req.body['idno'];
+        }
+        else{
+            var id = req.body['stockid'];
+            var docid = req.body['docid'];
+            var fname = req.body['fname'];
+            var fidno = req.body['fidno'];
+        } 
+/*        var personId = req.body.id;
         var trueName = req.body.name;
         var gender = req.body.gender;
         var address = req.body.address;
@@ -197,7 +227,7 @@ router.post('/Lost', function (req, res, next) {
                     res.send('账户验证失败!请检查是否输入有误');
             }
 
-        });
+        });*/
     }
 });
 
@@ -213,6 +243,23 @@ router.post('/Delete', function (req, res, next) {
     }
     else
     {
+        var c = 0;
+        console.log(req.query['Corporate']);
+        if(req.query['Corporate'] == 1){
+            c = 1;
+        }
+        if(c = 0){
+            var id = req.body['stockid'];
+            var name = req.body['name'];
+            var idno = req.body['idno'];
+        }
+        else{
+            var id = req.body['stockid'];
+            var docid = req.body['docid'];
+            var fname = req.body['fname'];
+            var fidno = req.body['fidno'];
+        }
+
         var personId = req.body.id;
         var trueName = req.body.name;
         var gender = req.body.gender;
@@ -258,8 +305,72 @@ router.get('/forgetpass', function (req, res, enext) {
 
 
 router.get('modify', function (req, res, next) {
-    
-});
+  var c = 0;
+  console.log(req.query['Corporate']);
+  if(req.query['Corporate'] == 1){
+    c = 1;
+  }
+  if(c == 0) {
+    res.render('SecAccSys/modifyIndividual', {
+      title: '修改信息',
+      stockID: '1234567890',
+      name: '张三',
+      sex: 'male',
+      idno: '1213214324',
+      phone: '12132321',
+      addr: 'dsdfdfdsfds',
+      degree: '本科',
+      career: 'dsadsa',
+      company: 'dsadasda'
+    });
+  } else {
+    res.render('SecAccSys/modifyCorporate', {
+      title: '修改信息',
+      stockID: '1234567890',
+      docid: '12345',
+      fname: '张三',
+      fidno: '1213214324',
+      fphone: '12132321',
+      faddr: 'dsdfdfdsfds',
+      name: '张三',
+      idno: '1213214324',
+      phone: '12132321',
+      addr: 'dsdfdfdsfds'
+    });
+  }
 
+});
+router.post('/modify', function (req, res, next) {
+    var c = 0;
+    console.log(req.query['Corporate']);
+    if(req.query['Corporate'] == 1){
+        c = 1;
+    }
+    if(c == 0){
+        var username = req.body['name'];
+        var usertype = 'Individual';
+        var usersex = req.body['sex'];
+        var userIdno = req.body['idno'];
+        var telephone = req.body['phone'];
+        var addr = req.body['addr'];
+        var career = req.body['career'];
+        var degree = req.body['degree'];
+        var company = req.body['company'];
+        var password = req.body['password'];
+    } else {
+        var usertype = 'Corporate';
+        var docid = req.body['docid'];
+        var fname = req.body['fname'];
+        var fidno = req.body['fidno'];
+        var fphone = req.body['fphone'];
+        var faddr = req.body['addr'];
+        var username = req.body['name'];
+        var userIdno = req.body['idno'];
+        var telephone = req.body['phone'];
+        var addr = req.body['addr'];
+        var company = req.body['company'];
+        var password = req.body['password'];
+    }
+});
 
 module.exports = router;
