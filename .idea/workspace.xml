@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8eeb938e-9221-42bc-9b5d-0edcbc9aff3e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/echarts.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/stock.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/db.js" afterPath="$PROJECT_DIR$/models/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/CapAccSys.js" afterPath="$PROJECT_DIR$/routes/CapAccSys.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
-    </list>
+    <list default="true" id="8eeb938e-9221-42bc-9b5d-0edcbc9aff3e" name="Default" comment="" />
     <ignored path="SuperGoodStock.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -464,12 +452,12 @@
       <workItem from="1467269628970" duration="611000" />
       <workItem from="1467354064489" duration="9629000" />
       <workItem from="1467416403946" duration="5135000" />
-      <workItem from="1467464663747" duration="23423000" />
+      <workItem from="1467464663747" duration="23482000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78959000" />
+    <option name="totallyTimeSpent" value="79018000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
