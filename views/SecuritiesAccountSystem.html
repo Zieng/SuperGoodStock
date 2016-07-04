@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>证券账户业务</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <script src="assets/js/jquery-2.2.3.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/SecuritiesAccountSystem.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">证券账户业务</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="operation-option" id="create_account"><a href="#">开通账户</a></li>
+                    <li class="operation-option" id="loss_report"><a href="#">挂失账户</a>
+                    <li class="operation-option" id="recreate_account"><a href="#">重新开户</a></li>
+                    <li class="operation-option" id="cancellation"><a href="#">注销账户</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="exit"><a href="/SecAccSys/logout">退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <iframe id="operation_page" src="subPage/welcome.html" scrolling="no" frameborder="no" width="100%" height="500px"></iframe>
+</body>
+</html>
