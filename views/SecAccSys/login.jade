@@ -1,18 +1,51 @@
 extends layout
 block stylesheet
-  link(rel='stylesheet', href='/stylesheets/SecAccSys/login.css')
+  //link(rel='stylesheet', href='/stylesheets/SecAccSys/login.css')
+  link(rel='stylesheet', href='/stylesheets/SecAccSys/demo.css')
+  style.
+    .registerform li{padding-bottom:20px;}
+    .Validform_checktip{margin-left:10px;}
+    .action{padding-left:10px;}
+  script(type='text/javascript').
+    $(function () {
+
+      var demo = $(".registerform").Validform({
+        tiptype: 3,
+        label: ".label",
+        showAllError: true,
+        datatype: {
+          "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+        },
+        ajaxPost: true
+      });
+      demo.addRule([{
+          ele: ".inputxt:eq(0)",
+          datatype: "n9-10",
+        },
+        {
+          ele: ".inputxt:eq(1)",
+          datatype: "*6-16"
+        },
+      ]);
+
+    })
 block content
   h1= title
-  .container
-    form(action="/SecAccSys/login", method='post').form-login
-      h2.form-login-heading 登录
-      input(type="text", name="uname", placeholder="用户名")#inName.form-control
-      input(type="password", name="upass", placeholder="密码")#inPassword.form-control
-      .form-group
-        input(type="radio", name="utype" value="normal", checked="true")
-        label 普通用户
-        input(type="radio", name="utype" value="admin")
-        label 管理员
-       .btn-group
+  .main
+    .wraper
+      h2.green 登录
+      form(action="/SecAccSys/login", method='post').registerform
+        ul
+          li
+            input(type="text", name="uname", placeholder="用户名").inputxt
+          li
+            input(type="password", name="upass", placeholder="密码").inputxt
+          li
+            input(type="radio", name="utype" value="normal", checked="true")#normal
+            label(for="normal") 普通用户
+            input(type="radio", name="utype" value="admin")#admin
+            label(for="admin") 管理员
+        .action
           input(type="submit", value="登录")
-          a(href="/SecAccSys/register", style="float: right;padding: 3px; margin-left: 30px") 注册
+          input(type="reset", value="清空")
+          a(href="/SecAccSys/register", style="padding: 5px;") 注册
