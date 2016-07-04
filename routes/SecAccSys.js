@@ -282,7 +282,7 @@ router.get('/forgetpass', function (req, res, enext) {
 });
 
 
-router.get('modify', function (req, res, next) {
+router.get('/modify', function (req, res, next) {
 
   var c = 0;
   console.log(req.query['Corporate']);
