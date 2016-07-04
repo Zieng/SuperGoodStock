@@ -25,14 +25,14 @@ router.post('/', function (req, res, next) {
 });
 
 
-router.get('/signup', function (req, res, next) {
+router.get('/register', function (req, res, next) {
     // clear cookies
     res.cookie('secId', "", { expires: new Date() });
     res.cookie('secPass', "", { expires: new Date() });
 
-    res.render('SecAccSys_signup', { title: '账户注册', countries : countryList  });
+    res.render('SecAccSys/register', { title: '账户注册', countries : countryList  });
 });
-router.post('/signup', function (req, res, next) {
+router.post('/register', function (req, res, next) {
     var username = req.body['username'];
     var email = req.body['email'];
     var country = req.body['country'];
@@ -72,7 +72,7 @@ router.post('/signup', function (req, res, next) {
 router.get('/login', function(req, res, next) {
     if (req.cookies.secId == undefined || req.cookies.secPass == undefined)
     {
-        res.render('SecAccSys_login', { title: '登陆' });
+        res.render('SecAccSys/login', { title: '登陆' });
     }
     else
     {
@@ -163,7 +163,7 @@ router.post('/activate', function (req, res, next) {
 
 // Lost
 router.get('/Lost', function (req, res, next) {
-    res.render('SecAccSys_lost');
+    res.render('SecAccSys/lossReport');
 });
 router.post('/Lost', function (req, res, next) {
     if( req.cookies.secId == undefined || req.cookies.secPass == undefined )
@@ -204,7 +204,7 @@ router.post('/Lost', function (req, res, next) {
 
 // Delete
 router.get('/Delete', function (req, res, next) {
-    res.render('SecAccSys_delete');
+    res.render('SecAccSys/closeAccount');
 });
 router.post('/Delete', function (req, res, next) {
     if( req.cookies.secId == undefined || req.cookies.secPass == undefined )
@@ -255,5 +255,11 @@ router.get('/forgetpass', function (req, res, enext) {
     res.send('请联系管理员');
     res.end();
 });
+
+
+router.get('modify', function (req, res, next) {
+    
+});
+
 
 module.exports = router;

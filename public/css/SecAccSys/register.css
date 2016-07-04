@@ -1,0 +1,54 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+h1 {
+    text-align: center;
+}
+.switch {
+    line-height: 40px;
+    width: 330px;
+    /*margin: 0 auto;*/
+    padding: 10px;
+    padding-left: 100px
+}
+.switch span {
+    padding: 10px;
+}
+#indi {
+    background-color: #f0ad4e;
+}
+#corp {
+    background-color: #e8e8e8;
+}
+#individual {
+    display: block;
+}
+#corporate {
+    display: none;
+}
+table{
+    width: 100%;
+    table-layout:fixed;
+
+}
+.left{
+    width: 20px;
+}
+td{
+    width: 100px;
+}
+form {
+    /*
+    width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    */
+}
+/*input {
+    padding-right: 10px;
+}
+label {
+    text-align:right; width:60px; float:left;
+}*/
