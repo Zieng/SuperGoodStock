@@ -470,6 +470,7 @@ router.post('/Info', function (req, res, next) {
     }
     else
     {
+        // console.log(req);
         CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
             if( err )
                 throw err;
@@ -481,7 +482,9 @@ router.post('/Info', function (req, res, next) {
                     res.send('账户已冻结,请先解冻');
                 else 
                 {
+                    // res.setHeader('Content-Type', 'application/json');
                     res.json(JSON.stringify(obj));
+                    // res.json(JSON.stringify(obj, null, 3));
                 }
             }
         });
