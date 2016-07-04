@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8eeb938e-9221-42bc-9b5d-0edcbc9aff3e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/signupController.js" afterPath="$PROJECT_DIR$/public/js/controllers/signupController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/form-validators/accountValidator.js" afterPath="$PROJECT_DIR$/public/js/form-validators/accountValidator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/views/signup.js" afterPath="$PROJECT_DIR$/public/js/views/signup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/subPage/info_service.html" afterPath="$PROJECT_DIR$/public/subPage/info_service.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/CapAccSys.js" afterPath="$PROJECT_DIR$/routes/CapAccSys.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/CapAccSys_login.jade" afterPath="$PROJECT_DIR$/views/CapAccSys_login.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/modals/form-errors.jade" afterPath="$PROJECT_DIR$/views/modals/form-errors.jade" />
     </list>
     <ignored path="SuperGoodStock.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,27 +23,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CapAccSys.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CapAccSys.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/CapAccSys.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="65" column="45" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
+            <state relative-caret-position="129">
+              <caret line="368" column="3" selection-start-line="368" selection-start-column="3" selection-end-line="368" selection-end-column="3" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
                 <element signature="e#475#524#0" expanded="false" />
+                <element signature="e#1871#2011#0" expanded="true" />
                 <element signature="e#2154#2217#0" expanded="false" />
                 <element signature="e#2231#2281#0" expanded="false" />
-                <element signature="e#2334#3152#0" expanded="true" />
                 <element signature="e#2610#3148#0" expanded="true" />
-                <element signature="e#2646#2697#0" expanded="false" />
                 <element signature="e#3613#3662#0" expanded="false" />
                 <element signature="e#3676#4985#0" expanded="false" />
                 <element signature="e#4128#4966#0" expanded="false" />
                 <element signature="e#4451#4932#0" expanded="false" />
+                <element signature="e#5153#6349#0" expanded="true" />
                 <element signature="e#5235#5284#0" expanded="false" />
-                <element signature="e#5298#6347#0" expanded="false" />
-                <element signature="e#5721#6341#0" expanded="false" />
-                <element signature="e#5982#6315#0" expanded="false" />
+                <element signature="e#5804#6329#0" expanded="true" />
                 <element signature="e#6585#6634#0" expanded="false" />
                 <element signature="e#6648#8322#0" expanded="false" />
                 <element signature="e#6881#8302#0" expanded="false" />
@@ -63,11 +54,7 @@
                 <element signature="e#9085#9413#0" expanded="false" />
                 <element signature="e#9459#9534#0" expanded="false" />
                 <element signature="e#9835#9874#0" expanded="false" />
-                <element signature="e#9888#11212#0" expanded="false" />
-                <element signature="e#10025#11206#0" expanded="false" />
-                <element signature="e#10286#11180#0" expanded="false" />
-                <element signature="e#10629#11162#0" expanded="false" />
-                <element signature="e#10704#11055#0" expanded="false" />
+                <element signature="e#10108#11194#0" expanded="true" />
                 <element signature="e#11442#11481#0" expanded="false" />
                 <element signature="e#11495#12364#0" expanded="false" />
                 <element signature="e#11881#12345#0" expanded="false" />
@@ -77,11 +64,32 @@
                 <element signature="e#13131#13956#0" expanded="false" />
                 <element signature="e#13316#13871#0" expanded="false" />
                 <element signature="e#13537#13829#0" expanded="false" />
-                <element signature="e#14205#14244#0" expanded="false" />
-                <element signature="e#14258#14710#0" expanded="false" />
-                <element signature="e#14491#14692#0" expanded="false" />
-                <element signature="e#14608#14678#0" expanded="false" />
+                <element signature="e#14123#14712#0" expanded="true" />
+                <element signature="e#14337#14702#0" expanded="true" />
+                <element signature="e#14770#14812#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="info_service.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/subPage/info_service.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+              <folding>
+                <element signature="e#591#641#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/db.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,7 +97,7 @@
       <file leaf-file-name="CapAccSys_login.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/CapAccSys_login.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="270">
               <caret line="18" column="74" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="74" />
               <folding />
             </state>
@@ -99,7 +107,7 @@
       <file leaf-file-name="CapAccSys_account.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/CapAccSys_account.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="645">
               <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="47" />
               <folding />
             </state>
@@ -119,11 +127,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loginValidator.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="loginValidator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/form-validators/loginValidator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="37" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="37" />
+            <state relative-caret-position="375">
+              <caret line="25" column="1" selection-start-line="15" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
               <folding>
                 <element signature="n#!!block;n#LoginValidator#0" expanded="true" />
                 <element signature="e#183#308#0" expanded="true" />
@@ -172,7 +180,6 @@
         <option value="$PROJECT_DIR$/views/CapAccSys_lost.jade" />
         <option value="$PROJECT_DIR$/views/CapAccSys_delete.jade" />
         <option value="$PROJECT_DIR$/views/CapAccSys_info.jade" />
-        <option value="$PROJECT_DIR$/public/js/form-validators/loginValidator.js" />
         <option value="$PROJECT_DIR$/views/CapAccSys_changePass.jade" />
         <option value="$PROJECT_DIR$/views/testform.html" />
         <option value="$PROJECT_DIR$/views/CapAccSys_index.jade" />
@@ -192,6 +199,7 @@
         <option value="$PROJECT_DIR$/public/js/views/signup.js" />
         <option value="$PROJECT_DIR$/public/js/form-validators/accountValidator.js" />
         <option value="$PROJECT_DIR$/views/modals/form-errors.jade" />
+        <option value="$PROJECT_DIR$/public/js/form-validators/loginValidator.js" />
       </list>
     </option>
   </component>
@@ -282,6 +290,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -310,25 +319,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuperGoodStock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuperGoodStock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modals" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -343,6 +334,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="subPage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -361,64 +356,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuperGoodStock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuperGoodStock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuperGoodStock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuperGoodStock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="form-validators" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuperGoodStock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuperGoodStock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -453,7 +390,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -552,12 +488,13 @@
       <workItem from="1467269396815" duration="64000" />
       <workItem from="1467269628970" duration="611000" />
       <workItem from="1467354064489" duration="9629000" />
-      <workItem from="1467416403946" duration="4940000" />
+      <workItem from="1467416403946" duration="5135000" />
+      <workItem from="1467464663747" duration="1357000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55341000" />
+    <option name="totallyTimeSpent" value="56893000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -569,7 +506,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="1023" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21097046" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -731,16 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="224" column="67" selection-start-line="224" selection-start-column="67" selection-end-line="224" selection-end-column="67" />
-          <folding>
-            <element signature="n#form#0;n#!!top" expanded="false" />
-            <element signature="n#form#1;n#!!top" expanded="false" />
-            <element signature="n#fieldset#0;n#form#1;n#!!top" expanded="false" />
-            <element signature="n#form#2;n#!!top" expanded="false" />
-            <element signature="n#form#3;n#!!top" expanded="false" />
-            <element signature="n#form#4;n#!!top" expanded="false" />
-            <element signature="n#form#5;n#!!top" expanded="false" />
-            <element signature="n#form#6;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -769,7 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -784,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -834,7 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -856,9 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="40" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="40" />
-          <folding>
-            <element signature="e#382#636#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -866,9 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="40" column="97" selection-start-line="40" selection-start-column="93" selection-end-line="40" selection-end-column="97" />
-          <folding>
-            <element signature="e#1622#1904#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -876,7 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,7 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="33" column="41" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,7 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,27 +815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
-          <folding>
-            <element signature="e#289#334#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/subPage/info_service.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="61" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
-          <folding>
-            <element signature="e#591#641#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -928,69 +822,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="10" column="102" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="102" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/CapAccSys_login.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="270">
           <caret line="18" column="74" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="74" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/CapAccSys.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="65" column="45" selection-start-line="65" selection-start-column="45" selection-end-line="65" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-            <element signature="e#475#524#0" expanded="false" />
-            <element signature="e#2154#2217#0" expanded="false" />
-            <element signature="e#2231#2281#0" expanded="false" />
-            <element signature="e#2334#3152#0" expanded="true" />
-            <element signature="e#2610#3148#0" expanded="true" />
-            <element signature="e#2646#2697#0" expanded="false" />
-            <element signature="e#3613#3662#0" expanded="false" />
-            <element signature="e#3676#4985#0" expanded="false" />
-            <element signature="e#4128#4966#0" expanded="false" />
-            <element signature="e#4451#4932#0" expanded="false" />
-            <element signature="e#5235#5284#0" expanded="false" />
-            <element signature="e#5298#6347#0" expanded="false" />
-            <element signature="e#5721#6341#0" expanded="false" />
-            <element signature="e#5982#6315#0" expanded="false" />
-            <element signature="e#6585#6634#0" expanded="false" />
-            <element signature="e#6648#8322#0" expanded="false" />
-            <element signature="e#6881#8302#0" expanded="false" />
-            <element signature="e#7439#8184#0" expanded="false" />
-            <element signature="e#8222#8288#0" expanded="false" />
-            <element signature="e#8573#8612#0" expanded="false" />
-            <element signature="e#8626#9585#0" expanded="false" />
-            <element signature="e#8756#9579#0" expanded="false" />
-            <element signature="e#9017#9552#0" expanded="false" />
-            <element signature="e#9085#9413#0" expanded="false" />
-            <element signature="e#9459#9534#0" expanded="false" />
-            <element signature="e#9835#9874#0" expanded="false" />
-            <element signature="e#9888#11212#0" expanded="false" />
-            <element signature="e#10025#11206#0" expanded="false" />
-            <element signature="e#10286#11180#0" expanded="false" />
-            <element signature="e#10629#11162#0" expanded="false" />
-            <element signature="e#10704#11055#0" expanded="false" />
-            <element signature="e#11442#11481#0" expanded="false" />
-            <element signature="e#11495#12364#0" expanded="false" />
-            <element signature="e#11881#12345#0" expanded="false" />
-            <element signature="e#11998#12260#0" expanded="false" />
-            <element signature="e#12602#12641#0" expanded="false" />
-            <element signature="e#12655#13975#0" expanded="false" />
-            <element signature="e#13131#13956#0" expanded="false" />
-            <element signature="e#13316#13871#0" expanded="false" />
-            <element signature="e#13537#13829#0" expanded="false" />
-            <element signature="e#14205#14244#0" expanded="false" />
-            <element signature="e#14258#14710#0" expanded="false" />
-            <element signature="e#14491#14692#0" expanded="false" />
-            <element signature="e#14608#14678#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -998,7 +837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1006,7 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="112" selection-start-line="7" selection-start-column="112" selection-end-line="7" selection-end-column="112" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1023,7 +860,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/CapAccSys_account.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="645">
           <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="47" />
           <folding />
         </state>
@@ -1033,10 +870,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-          <folding>
-            <element signature="e#325#395#0" expanded="true" />
-            <element signature="e#418#583#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1044,7 +877,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1052,7 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1060,14 +891,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="60" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
-          <folding>
-            <element signature="e#467#495#0" expanded="true" />
-            <element signature="e#537#703#0" expanded="true" />
-            <element signature="e#742#935#0" expanded="true" />
-            <element signature="e#1256#1362#0" expanded="true" />
-            <element signature="e#1425#1526#0" expanded="true" />
-            <element signature="e#1582#2148#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1075,18 +898,82 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/form-validators/loginValidator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="37" />
+        <state relative-caret-position="375">
+          <caret line="25" column="1" selection-start-line="15" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
           <folding>
             <element signature="n#!!block;n#LoginValidator#0" expanded="true" />
             <element signature="e#183#308#0" expanded="true" />
             <element signature="e#363#591#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/subPage/info_service.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+          <folding>
+            <element signature="e#591#641#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/CapAccSys.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="368" column="3" selection-start-line="368" selection-start-column="3" selection-end-line="368" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#475#524#0" expanded="false" />
+            <element signature="e#1871#2011#0" expanded="true" />
+            <element signature="e#2154#2217#0" expanded="false" />
+            <element signature="e#2231#2281#0" expanded="false" />
+            <element signature="e#2610#3148#0" expanded="true" />
+            <element signature="e#3613#3662#0" expanded="false" />
+            <element signature="e#3676#4985#0" expanded="false" />
+            <element signature="e#4128#4966#0" expanded="false" />
+            <element signature="e#4451#4932#0" expanded="false" />
+            <element signature="e#5153#6349#0" expanded="true" />
+            <element signature="e#5235#5284#0" expanded="false" />
+            <element signature="e#5804#6329#0" expanded="true" />
+            <element signature="e#6585#6634#0" expanded="false" />
+            <element signature="e#6648#8322#0" expanded="false" />
+            <element signature="e#6881#8302#0" expanded="false" />
+            <element signature="e#7439#8184#0" expanded="false" />
+            <element signature="e#8222#8288#0" expanded="false" />
+            <element signature="e#8573#8612#0" expanded="false" />
+            <element signature="e#8626#9585#0" expanded="false" />
+            <element signature="e#8756#9579#0" expanded="false" />
+            <element signature="e#9017#9552#0" expanded="false" />
+            <element signature="e#9085#9413#0" expanded="false" />
+            <element signature="e#9459#9534#0" expanded="false" />
+            <element signature="e#9835#9874#0" expanded="false" />
+            <element signature="e#10108#11194#0" expanded="true" />
+            <element signature="e#11442#11481#0" expanded="false" />
+            <element signature="e#11495#12364#0" expanded="false" />
+            <element signature="e#11881#12345#0" expanded="false" />
+            <element signature="e#11998#12260#0" expanded="false" />
+            <element signature="e#12602#12641#0" expanded="false" />
+            <element signature="e#12655#13975#0" expanded="false" />
+            <element signature="e#13131#13956#0" expanded="false" />
+            <element signature="e#13316#13871#0" expanded="false" />
+            <element signature="e#13537#13829#0" expanded="false" />
+            <element signature="e#14123#14712#0" expanded="true" />
+            <element signature="e#14337#14702#0" expanded="true" />
+            <element signature="e#14770#14812#0" expanded="true" />
           </folding>
         </state>
       </provider>
