@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>信息发布系统</title>
+
+	<script type="text/javascript" src="../js/InfoPubSys/jQuery.js"></script>
+	<script type="text/javascript" src="../js/InfoPubSys/jqplot.js"></script>
+	<script>
+		mapData = <%=data%>;
+	</script>
+
+</head>
+
+<body>
+	<div style="text-align:center">
+		<form method='post'> 
+			<p>请输入股票代码</p>
+			<textarea name='tickerSymbol'>代码</textarea><br></br>
+			<input type="submit" style="height:40" value='查询'></br>
+			<input type="radio" name="scale" value="day" onclick='submit()' checked >日K线
+			<input type="radio" name="scale" value="month" onclick='submit()' >月K线
+			<input type="radio" name="scale" value="year" onclick='submit()' >年K线
+		</form>
+	</div>
+
+	<div id="chart" style="margin-top:20"></div>
+	<script type="text/javascript" src="../js/InfoPubSys/javascripts/index.js"></script> 
+
+</body>
+</html>
+

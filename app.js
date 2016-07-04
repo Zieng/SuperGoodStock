@@ -13,11 +13,15 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var CapAccSys = require('./routes/CapAccSys');
 var SecAccSys = require('./routes/SecAccSys');
+var InfoPubSys = require('./routes/InfoPubSys');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+var engines = require('consolidate');
+app.engine('jade', engines.jade);
+app.engine('html', engines.ejs);
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -32,6 +36,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/CapAccSys', CapAccSys);
 app.use('/SecAccSys', SecAccSys);
+app.use('/InfoPubSys', InfoPubSys);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
