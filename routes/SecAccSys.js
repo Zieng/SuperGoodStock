@@ -6,7 +6,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-//var CapitalAccount = mongoose.model('CapitalAccount');
+var CapitalAccount = mongoose.model('CapitalAccount');
 var SecuritiesAccount = mongoose.model('SecuritiesAccount');
 
 var countryList = require('../models/country-list');
@@ -96,6 +96,8 @@ router.post('/register', function (req, res, next) {
     if (c==0) {
         newAccount.userSex = usersex;
     }
+
+    res.send("你的证券账号编号为"+newAccount.saId.toString());
 
     newAccount.save( function (err) {
         if(err)
