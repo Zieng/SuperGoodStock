@@ -133,7 +133,6 @@ function calculateMA(dayCount) {
 
 
 $(document).ready(function (){
-    alert('window ready');
     $.post("/", {}, function (data) {
         if( data == undefined || data == null )
         {

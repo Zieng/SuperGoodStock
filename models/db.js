@@ -131,8 +131,7 @@ var DailyS = new Schema({
 mongoose.model('DailyStock', DailyS);
 
 // Instruction Schema
-var InstS = new Schema({
-    insId:{ type: Number, default: 0, required: true, unique: true},
+var BuyInstS = new Schema({
     tickerSymbol: [{
         type: Schema.Types.ObjectId,
         ref: 'StkS'
@@ -141,14 +140,40 @@ var InstS = new Schema({
        type: Schema.Types.ObjectId,
         ref: 'CapS'
     }],
+    saID: [{
+        type: Schema.Types.ObjectId,
+        ref: 'SecS'
+    }],
     time: { type: Date, default: Date.now()},
-    type: { type: Number, default: 0},
     amount: { type: Number, default: 0},
     price: { type: Number, default:0},
+    type:{type:Number,default:0},
     leftAmount: { type: Number, default:0},
-    state: { type: Number, default:0},
+    state: { type: Number, default:-1}                    //1 successfully trade 0 partly trade -1 unsuccessfully trade
 });
-mongoose.model('Instruction', InstS);
+mongoose.model('BuyInstruction', BuyInstS);
+
+var SellInstS = new Schema({
+    tickerSymbol: [{
+        type: Schema.Types.ObjectId,
+        ref: 'StkS'
+    }],
+    caId:[{
+        type: Schema.Types.ObjectId,
+        ref: 'CapS'
+    }],
+    saID: [{
+        type: Schema.Types.ObjectId,
+        ref: 'SecS'
+    }],
+    time: { type: Date, default: Date.now()},
+    amount: { type: Number, default: 0},
+    type:{type:Number,default:0},
+    price: { type: Number, default:0},
+    leftAmount: { type: Number, default:0},
+    state: { type: Number, default:-1}                     //1 successfully trade 0 partly trade -1 unsuccessfully trade
+});
+mongoose.model('SellInstruction', SellInstS);
 
 // Transaction Schema
 var tranS = new Schema({
