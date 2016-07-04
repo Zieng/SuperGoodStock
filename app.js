@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var CapAccSys = require('./routes/CapAccSys');
 var SecAccSys = require('./routes/SecAccSys');
+var debug_stock = require('./routes/stock');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/CapAccSys', CapAccSys);
 app.use('/SecAccSys', SecAccSys);
+app.use('/stock', debug_stock);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

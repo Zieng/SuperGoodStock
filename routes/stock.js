@@ -1,13 +1,18 @@
+/**
+ * Created by zieng on 7/4/16.
+ */
+
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+
 var SecAccount = mongoose.model('SecuritiesAccount');
 var CapitalAccount = mongoose.model('CapitalAccount');
-
-var securities_account_type = require('../models/securities_account_type');
+var DailyStock = mongoose.model('DailyStock');
+var Stock = mongoose.model('Stock');
 
 var rawData = [
-    ['2013/1/23', 2320.26,2320.26,2287.3,2362.94],
+    ['2013/1/24', 2320.26,2320.26,2287.3,2362.94],
     ['2013/1/25', 2300,2291.3,2288.26,2308.38],
     ['2013/1/28', 2295.35,2346.5,2295.35,2346.92],
     ['2013/1/29', 2347.22,2358.98,2337.35,2363.8],
@@ -96,26 +101,121 @@ var rawData = [
     ['2013/6/7', 2242.26,2210.9,2205.07,2250.63],
     ['2013/6/13', 2190.1,2148.35,2126.22,2190.1]
 ];
-    
-    
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
-    res.render('index');
-});
-router.post('/', function (req, res, next) {
-    // res.render('index', {data: rawData});
-    res.json( {data:rawData} );
-});
-
-
-
-router.get('/securities_signup', function(req, res, next) {
-    res.render('securities_signup', { title: '证券账户注册', account_type : securities_account_type  });
+    console.log("get all DailyStock");
+    DailyStock.find().lean({}).exec(function (err, results) {
+        return res.send(JSON.stringify(results));
+    })
 });
 
+router.get('/stock', function(req, res, next) {
+    console.log("get all Stock");
+    Stock.find().lean({}).exec(function (err, results) {
+        return res.send(JSON.stringify(results));
+    })
+});
 
-// router.get("*", function (req, res) {
-//     res.render('404', { title: 'Page Not Found'});
-// });
+router.get('/add_stock', function (req, res, next) {
+    var newStock = new Stock();
+
+    newStock.tickerSymbol = 123;
+    newStock.name = 'stock';
+    
+    newStock.save(function (err) {
+        if( err )
+            return next(err);
+        res.send('create a new stock:'+newStock.name);
+    })
+    
+});
+
+router.get('/del_stock', function (req, res, next) {
+    Stock.find({}).remove().exec();
+    res.send("delete all stock");
+});
+
+router.get('/add', function (req, res, next) {
+    var newDailyStock = new DailyStock();
+    
+});
+
+router.get('/addall', function (req, res, next) {
+    // res.send(rawData[0]);
+    // res.send(rawData[0][0]
+    //     +rawData[0][1]
+    //     +rawData[0][2]
+    //     +rawData[0][3]
+    //     +rawData[0][4]);
+
+
+    Stock.findOne({tickerSymbol: 123}, function (err, obj) {
+        if( err )
+            throw err;
+        if( obj == null )
+            res.send('Not found stock with tickerSymbol='+123);
+        else
+        {
+            var i = 0;
+            // for( i=0; i<rawData.length; i++)
+            // {
+            //     // console.log(i);
+            //     // console.log(rawData[i]);
+            //     var date = rawData[i][0];
+            //     var openingPrice = rawData[i][1];
+            //     var closingPrice = rawData[i][2];
+            //     var lowestPrice = rawData[i][3];
+            //     var highestPrice = rawData[i][4];
+            //
+            //     var newDailyStock = new DailyStock();
+            //
+            //     newDailyStock.tickerSymbol = obj.tickerSymbol;
+            //
+            //     newDailyStock.date = new Date(rawData[i][0]);
+            //     newDailyStock.openingPrice = rawData[i][1];
+            //     newDailyStock.closingPrice = rawData[i][2];
+            //     newDailyStock.lowestPrice = rawData[i][3];
+            //     newDailyStock.highestPrice = rawData[i][4];
+            //     newDailyStock.save( function (err) {
+            //         if( err )
+            //             throw err;
+            //         console.log('save ok');
+            //     });
+            // }
+
+            var date = rawData[i][0];
+            var openingPrice = rawData[i][1];
+            var closingPrice = rawData[i][2];
+            var lowestPrice = rawData[i][3];
+            var highestPrice = rawData[i][4];
+
+            console.log(date);
+            console.log(openingPrice);
+            console.log(closingPrice);
+            console.log(lowestPrice);
+            console.log(highestPrice);
+
+            var newDailyStock = new DailyStock();
+            console.log(typeof newDailyStock.tickerSymbol);
+            console.log(typeof obj.tickerSymbol);
+
+
+            newDailyStock.tickerSymbol = obj.tickerSymbol;
+
+            newDailyStock.date = new Date(date);
+            newDailyStock.openingPrice = openingPrice;
+            newDailyStock.closingPrice = closingPrice;
+            newDailyStock.lowestPrice = lowestPrice;
+            newDailyStock.highestPrice = highestPrice;
+            newDailyStock.save( function (err) {
+                if( err )
+                    throw err;
+                console.log('save ok');
+            });
+        }
+    });
+    // console.log(rawData.length);
+    // console.log(rawData[87]);
+});
 
 module.exports = router;

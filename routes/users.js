@@ -23,6 +23,7 @@ router.get('/', function(req, res, next) {
     // })
     console.log("get all accounts");
     CapitalAccount.find().lean({}).exec(function (err, results) {
+        console.log(results);
         return res.send(JSON.stringify(results));
     })
 });

@@ -24,11 +24,12 @@ mongoose.model('SecuritiesAccount', SecS);
 
 // CapitalAccount Schema
 var CapS = new Schema({
-    caId:{type: Number, default: 0, required: true, unique: true},
-    saID: [{
-        type: Schema.Types.ObjectId,
-        ref: 'SecS'
-    }],
+    caId:{ type: Number, default: 0, required: true, unique: true},
+    // saId: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'SecS'
+    // }],
+    saId: { type: Number, default: 0},
     username: { type: String, default: 'null' , required: true},
     trueName: { type: String, default: 'tom'},
     loginPassword: { type: String, default: 'null', required: true },
@@ -49,7 +50,6 @@ var CapS = new Schema({
     isLost: { type: Boolean, default: false}
 });
 CapS.pre('save', function (next) {
-    var doc = this;
     counter.findByIdAndUpdate({_id: 'CapitalAccount'}, {$inc: { seq: 1} }, function(error, obj)   {
         if(error)
             return next(error);
@@ -63,7 +63,6 @@ CapS.pre('save', function (next) {
                     return next(err);
             });
         }
-        doc.caId = obj.seq;
         next();
     });
 });
@@ -117,7 +116,7 @@ mongoose.model('Announcement', AnnS);
 var DailyS = new Schema({
     tickerSymbol: [{
         type: Schema.Types.ObjectId,
-        ref: 'StkS'
+        ref: 'Stock'
     }],
     limit:{ type: Number, default: 0},
     state:{ type: Number, default: 0},

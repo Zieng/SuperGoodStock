@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 var CapitalAccount = mongoose.model('CapitalAccount');
 var SecuritiesAccount = mongoose.model('SecuritiesAccount');
+var Counter = mongoose.model('counter');
 
 var countryList = require('../models/country-list');
 
@@ -50,20 +51,25 @@ router.post('/signup', function (req, res, next) {
         res.send('两次输入的登录密码不符');
     else
     {
-        var newAccount = new CapitalAccount();
-        newAccount.caId = Math.random();
-        newAccount.username = username;
-        newAccount.loginPassword = loginPass;
-        newAccount.country = country;
-        newAccount.city = city;
-        newAccount.email = email;
-        newAccount.telephone = telephone;
-
-        newAccount.save( function (err) {
-            if(err)
+        Counter.findById({_id: 'CapitalAccount'}, function (err, obj) {
+            if( err )
                 return next(err);
-            res.status(200);
-            res.redirect('/CapAccSys/login');
+            console.log('\t\tok');
+            var newAccount = new CapitalAccount();
+            newAccount.caId = obj.seq;
+            newAccount.username = username;
+            newAccount.loginPassword = loginPass;
+            newAccount.country = country;
+            newAccount.city = city;
+            newAccount.email = email;
+            newAccount.telephone = telephone;
+
+            newAccount.save( function (err) {
+                if(err)
+                    return next(err);
+                res.status(200);
+                res.redirect('/CapAccSys/login');
+            });
         });
     }
 
@@ -123,7 +129,24 @@ router.get('/logout', function (req, res, next) {
 
 // update info
 router.get('/editinfo', function (req, res, next) {
-    res.send('Edit Info');
+    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
+    {
+        res.redirect('/CapAccSys/login');
+    }
+    else
+    {
+        CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
+            if( err )
+                throw err;
+            if( obj == null )
+                res.send('user not found');
+            else
+            {
+                console.log(obj);
+            }
+
+        });
+    }
 });
 router.post('/editinfo', function (req, res, next) {
     if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
@@ -145,6 +168,9 @@ router.post('/editinfo', function (req, res, next) {
                 res.send('user not found');
             else
             {
+                console.log(obj);
+                var oldCaId = obj.caId;
+
                 SecuritiesAccount.findOne({saId: securitiesAccount}, function (err2, secAccount) {
                     if( err2 )
                         throw err2;
@@ -152,8 +178,11 @@ router.post('/editinfo', function (req, res, next) {
                         res.send('No such Securities Account!');
                     else
                     {
+                        // console.log(typeof obj.saID);
+                        console.log(secAccount.saId);
+
                         obj.personId = personId;
-                        obj.saID = secAccount.saID;
+                        obj.saId = secAccount.saId;
                         obj.trueName = trueName;
                         obj.gender = gender;
                         obj.address = address;
@@ -232,6 +261,7 @@ router.post('/Modify', function (req, res, next) {
             else
             {
                 console.log("cookie.caId = "+req.cookies.caId);
+                console.log(obj);
 
                 var passwordType = req.body.passwordType;
                 var oldPassword = req.body.oldPassword;
