@@ -23,7 +23,7 @@ block content
     span(onclick="swit(0)")#indi 个人
     span(onclick="swit(1)")#corp 法人
   #individual.container
-    form(action="/SecAccSys/register?Individual", method="post").registerform
+    form(action="/SecAccSys/register?Corporate=0", method="post").registerform
       table.table(style="table-layout:fixed;")
         tbody
           tr
@@ -75,7 +75,7 @@ block content
 
 
   #corporate.container
-    form(action="/SecAccSys/register?Corporate", method="post").registerform
+    form(action="/SecAccSys/register?Corporate=1", method="post").registerform
       table.table(style="table-layout:fixed;")
         tr
           td.left 法人
