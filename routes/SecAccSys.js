@@ -66,13 +66,20 @@ router.post('/register', function (req, res, next) {
 
     var newAccount = new SecuritiesAccount();
 
-    if (c==0 && newAccount.find({"userID" : userIdno, "isActivated" : 1}).count() > 0) {
-        res.send("身份证号已被使用!");
+
+    
+/*
+    if (c==0 && SecuritiesAccount.find({userID : "123123199204062349", isActivated : 1}).count() > 0) {
+        //res.send("身份证号已被使用!");
+        console.log("身份证号已被使用!");
     }
 
-    if (c==0 && newAccount.find({"docID" : docid, "isActivated" : 1}).count() > 0) {
-        res.send("法人编号已被使用!");
+
+
+    if (c==1 && SecuritiesAccount.find({docID : docid, isActivated : 1}).count() > 0) {
+        //res.send("法人编号已被使用!");
     }
+*/
 
     newAccount.saId = Math.random();
     newAccount.name = username;
@@ -97,7 +104,7 @@ router.post('/register', function (req, res, next) {
         newAccount.userSex = usersex;
     }
 
-    res.send("你的证券账号编号为"+newAccount.saId.toString());
+    //res.send("你的证券账号编号为"+newAccount.saId.toString());
 
     newAccount.save( function (err) {
         if(err)
