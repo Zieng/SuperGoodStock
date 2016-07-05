@@ -6,7 +6,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-var CapitalAccount = mongoose.model('CapitalAccount');
+//var CapitalAccount = mongoose.model('CapitalAccount');
 var SecuritiesAccount = mongoose.model('SecuritiesAccount');
 
 var countryList = require('../models/country-list');
@@ -66,20 +66,13 @@ router.post('/register', function (req, res, next) {
 
     var newAccount = new SecuritiesAccount();
 
-
-    
-/*
-    if (c==0 && SecuritiesAccount.find({userID : "123123199204062349", isActivated : 1}).count() > 0) {
-        //res.send("身份证号已被使用!");
-        console.log("身份证号已被使用!");
+    if (c==0 && SecuritiesAccount.find({userID : userIdno, isActivated : 1}).count() > 0) {
+        res.send("身份证号已被使用!");
     }
 
-
-
-    if (c==1 && SecuritiesAccount.find({docID : docid, isActivated : 1}).count() > 0) {
-        //res.send("法人编号已被使用!");
+    if (c==0 && SecuritiesAccount.find({docID : docid, isActivated : 1}).count() > 0) {
+        res.send("法人编号已被使用!");
     }
-*/
 
     newAccount.saId = Math.random();
     newAccount.name = username;
@@ -103,8 +96,6 @@ router.post('/register', function (req, res, next) {
     if (c==0) {
         newAccount.userSex = usersex;
     }
-
-    //res.send("你的证券账号编号为"+newAccount.saId.toString());
 
     newAccount.save( function (err) {
         if(err)
