@@ -116,8 +116,6 @@ router.get('/login', function(req, res, next) {
     }
     else
     {
-        console.log("Fuckme2");
-
         res.send("use cookie auto login");
     }
 });
@@ -128,8 +126,9 @@ router.post('/login', function (req, res, next) {
 
     var username = parseInt(req.body['uname']);
     var password = req.body['upass'];
+    var usertype = req.body['utype'];
 
-    //if (reg.body['utype'] == "normal") {
+    if (usertype == 'normal') {
         SecuritiesAccount.findOne({saId: username}, function (err, doc) {
             if (doc == null) {
                 res.send('User Not Found');
@@ -144,12 +143,11 @@ router.post('/login', function (req, res, next) {
                     res.cookie('secPass', password, {maxAge: 900000});
 
                     console.log('hello');
-                    res.redirect('/SecAccSys');
+                    res.redirect('/TradingClient');
                 }
 
             }
-        });
-    /*}
+        });}
     else {
         AdminAccount.findOne({adminId: username}, function (err, doc) {
             if (doc == null) {
@@ -164,13 +162,13 @@ router.post('/login', function (req, res, next) {
                     res.cookie('saId', doc.adminId, {maxAge: 900000});
                     res.cookie('secPass', password, {maxAge: 900000});
 
-                    // console.log('hello');
+                    console.log('hallo');
                     res.redirect('/SecAccSys');
                 }
 
             }
         });
-    }*/
+    }
 });
 
 

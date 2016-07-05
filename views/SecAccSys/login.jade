@@ -6,7 +6,7 @@ block stylesheet
     .registerform li{padding-bottom:20px;}
     .Validform_checktip{margin-left:10px;}
     .action{padding-left:10px;}
-  script(type='text/javascript').
+  //script(type='text/javascript').
     $(function () {
       //$(".registerform").Validform();  //就这一行代码！;
 
@@ -17,7 +17,7 @@ block stylesheet
         datatype: {
           "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
         },
-        ajaxPost: true
+        ajaxPost: false
       });
       demo.addRule([{
           ele: ".inputxt:eq(0)",
