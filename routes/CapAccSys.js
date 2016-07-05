@@ -12,7 +12,9 @@ var Counter = mongoose.model('counter');
 
 var countryList = require('../models/country-list');
 
+var rememberMe = false;
 
+// get the CapAccSys main page
 router.get('/', function (req, res, next) {
     // res.send('CapAccSys_index');
     if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
@@ -54,7 +56,6 @@ router.post('/signup', function (req, res, next) {
         Counter.findById({_id: 'CapitalAccount'}, function (err, obj) {
             if( err )
                 return next(err);
-            console.log('\t\tok');
             var newAccount = new CapitalAccount();
             newAccount.caId = obj.seq;
             newAccount.username = username;
@@ -83,7 +84,8 @@ router.get('/login', function(req, res, next) {
     }
     else
     {
-        res.send("use cookie auto login");
+        // res.send("use cookie auto login");
+        res.redirect('/CapAccSys');
     }
 });
 router.post('/login', function (req, res, next) {
@@ -93,6 +95,8 @@ router.post('/login', function (req, res, next) {
 
     var username = req.body['user'];
     var password = req.body['pass'];
+    rememberMe = req.body['rememberMe'];
+    console.log('RememberMe: '+rememberMe);
     CapitalAccount.findOne({username: username}, function (err, doc) {
         if( doc == null )
         {
@@ -104,15 +108,12 @@ router.post('/login', function (req, res, next) {
                 res.send('Invalid Password');
             else
             {
-                // res.send(JSON.stringify(doc));
-
                 res.cookie('caId', doc.caId, { maxAge: 900000 });
                 res.cookie('capPass', password, { maxAge: 900000 });
 
                 // console.log('hello');
                 res.redirect('/CapAccSys');
             }
-
         }
     });
 });
@@ -129,24 +130,7 @@ router.get('/logout', function (req, res, next) {
 
 // update info
 router.get('/editinfo', function (req, res, next) {
-    if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
-    {
-        res.redirect('/CapAccSys/login');
-    }
-    else
-    {
-        CapitalAccount.findOne({caId: req.cookies.caId}, function (err, obj) {
-            if( err )
-                throw err;
-            if( obj == null )
-                res.send('user not found');
-            else
-            {
-                console.log(obj);
-            }
-
-        });
-    }
+    res.send('Edit Info');
 });
 router.post('/editinfo', function (req, res, next) {
     if( req.cookies.caId == undefined || req.cookies.capPass == undefined )
@@ -168,9 +152,6 @@ router.post('/editinfo', function (req, res, next) {
                 res.send('user not found');
             else
             {
-                console.log(obj);
-                var oldCaId = obj.caId;
-
                 SecuritiesAccount.findOne({saId: securitiesAccount}, function (err2, secAccount) {
                     if( err2 )
                         throw err2;
@@ -179,7 +160,7 @@ router.post('/editinfo', function (req, res, next) {
                     else
                     {
                         // console.log(typeof obj.saID);
-                        console.log(secAccount.saId);
+                        // console.log(secAccount.saId);
 
                         obj.personId = personId;
                         obj.saId = secAccount.saId;
@@ -230,6 +211,7 @@ router.post('/activate', function (req, res, next) {
                 {
                     obj.tradePassword = tradePassword;
                     obj.withdrawalPassword = withdrawalPassword;
+                    obj.activate = true;
                     obj.save( function (err) {
                         if( err )
                             return next(err);
@@ -260,20 +242,23 @@ router.post('/Modify', function (req, res, next) {
                 res.send('user not found');
             else
             {
-                console.log("cookie.caId = "+req.cookies.caId);
-                console.log(obj);
+                // console.log("cookie.caId = "+req.cookies.caId);
+                // console.log(obj);
 
                 var passwordType = req.body.passwordType;
                 var oldPassword = req.body.oldPassword;
                 var newPassword = req.body.newPassword1;
                 var newPassword_confirm = req.body.newPassword2;
 
-                console.log("password type= "+passwordType);
-                console.log("oldPassword = "+oldPassword);
-                console.log("newPassword = "+newPassword);
+                // console.log("password type= "+passwordType);
+                // console.log("oldPassword = "+oldPassword);
+                // console.log("newPassword = "+newPassword);
 
-
-                if( newPassword == newPassword_confirm )
+                if( obj.activate == false)
+                {
+                    res.send('请先开通账户');
+                }
+                else if( newPassword == newPassword_confirm )
                 {
                     if( passwordType == 'transaction' && oldPassword == obj.tradePassword )
                         obj.tradePassword = newPassword;
@@ -326,7 +311,11 @@ router.post('/MoneySave', function (req, res, next) {
                     res.send('user not found');
                 else
                 {
-                    if( obj.isLost == false )
+                    if( obj.activate == false)
+                    {
+                        res.send('请先开通账户');
+                    }
+                    else if( obj.isLost == false )
                     {
 
                         obj.availableCapital = obj.availableCapital + toSave;
@@ -373,8 +362,12 @@ router.post('/MoneyLoad', function (req, res, next) {
                 else
                 {
                     var withdrawalPassword = req.body.withdrawalPassword;
-
-                    if( withdrawalPassword != obj.withdrawalPassword )
+                    
+                    if( obj.activate == false)
+                    {
+                        res.send('请先开通账户');
+                    }
+                    else if( withdrawalPassword != obj.withdrawalPassword )
                         res.send('取款密码不正确');
                     else if ( obj.availableCapital < money )
                         res.send('账户余额不足');
@@ -422,7 +415,11 @@ router.post('/Lost', function (req, res, next) {
                 res.send('user not found');
             else
             {
-                if( personId == obj.personId && trueName == obj.trueName && gender == obj.gender )
+                if( obj.activate == false)
+                {
+                    res.send('请先开通账户');
+                }
+                else if( personId == obj.personId && trueName == obj.trueName && gender == obj.gender )
                 {
                     obj.isLost = true;
                     obj.save( function (err) {
@@ -465,7 +462,11 @@ router.post('/Delete', function (req, res, next) {
                 res.send('user not found');
             else
             {
-                if( personId == obj.personId && trueName == obj.trueName && gender == obj.gender
+                if( obj.activate == false)
+                {
+                    res.send('请先开通账户');
+                }
+                else if( personId == obj.personId && trueName == obj.trueName && gender == obj.gender
                     && withdrawalPassword == obj.withdrawalPassword )
                 {
                     CapitalAccount.remove({caId: req.cookies.caId}, function (err2) {

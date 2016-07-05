@@ -12,7 +12,7 @@ $(document).ready(function(){
 				return false;
 			} 	else{
 			// append 'remember-me' option to formData to write local cookie //
-				formData.push({name:'remember-me', value:$('.button-rememember-me-glyph').hasClass('glyphicon-ok')});
+				formData.push({name:'rememberMe', value:$('.button-rememember-me-glyph').hasClass('glyphicon-ok')});
 				return true;
 			}
 		},

@@ -47,7 +47,8 @@ var CapS = new Schema({
     telephone: { type: Number, default: 13612345678 },
     nextYearInterest: { type: Number, default: 0},
     recentDate: { type: Date, default: Date.now },
-    isLost: { type: Boolean, default: false}
+    isLost: { type: Boolean, default: false},
+    activate: { type: Boolean, default: false}
 });
 CapS.pre('save', function (next) {
     counter.findByIdAndUpdate({_id: 'CapitalAccount'}, {$inc: { seq: 1} }, function(error, obj)   {

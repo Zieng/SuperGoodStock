@@ -15,10 +15,10 @@ function LoginValidator()
 LoginValidator.prototype.validateForm = function()
 {
 	if ($('#user-tf').val() == ''){
-		this.showLoginError('Whoops!', '请输入有效的用户名');
+		this.showLoginError('等等!', '请输入有效的用户名');
 		return false;
 	}	else if ($('#pass-tf').val() == ''){
-		this.showLoginError('Whoops!', '请输入有效的密码');
+		this.showLoginError('等等!', '请输入有效的密码');
 		return false;
 	}	else{
 		return true;

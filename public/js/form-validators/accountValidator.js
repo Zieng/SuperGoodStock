@@ -3,8 +3,8 @@ function AccountValidator()
 {
 // build array maps of the form inputs & control groups //
 
-	this.formFields = [$('#name-tf'), $('#email-tf'), $('#loginPass-tf')];
-	this.controlGroups = [$('#name-cg'), $('#email-cg'), $('#loginPass-cg')];
+	this.formFields = [$('#name-tf'), $('#email-tf'), $('#loginPass-tf'),  $('#loginPass-tf2'), $('#telephone-tf')];
+	this.controlGroups = [$('#name-cg'), $('#email-cg'), $('#loginPass-cg'), $('#telephone-cg')];
 	
 // bind the form-error modal window to this controller to display any errors //
 	
@@ -25,12 +25,20 @@ function AccountValidator()
 			return s.length >= 6;
 		}
 	};
+
+	this.validatePassMatch = function (s1, s2) {
+		return s1 == s2;
+	};
 	
 	this.validateEmail = function(e)
 	{
 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		return re.test(e);
 	};
+
+    this.validateTel = function (s) {
+        return s.length == 11;
+    };
 	
 	this.showErrors = function(a)
 	{
@@ -70,6 +78,16 @@ AccountValidator.prototype.validateForm = function()
 		this.controlGroups[2].addClass('error');
 		e.push('为了安全,密码至少要6个字符');
 	}
+	if (this.validatePassMatch(this.formFields[2].val(), this.formFields[3].val()) == false)
+	{
+		this.controlGroups[2].addClass('error');
+		e.push('两次输入密码不符');
+	}
+    if (this.validateTel(this.formFields[4].val()) == false)
+    {
+        this.controlGroups[3].addClass('error');
+        e.push('请输入11位电话号码格式');
+    }
 	if (e.length) this.showErrors(e);
 	return e.length === 0;
 };

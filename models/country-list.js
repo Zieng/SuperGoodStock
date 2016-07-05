@@ -1,6 +1,6 @@
 
 module.exports = [
-    {short:"  " , name:"Please select a country"},
+    {short:"  " , name:"请选择您的国籍"},
     {short:"AF" , name:"Afghanistan"},
     {short:"AL" , name:"Albania"},
     {short:"DZ" , name:"Algeria"},
@@ -44,7 +44,7 @@ module.exports = [
     {short:"CF" , name:"Central African Republic"},
     {short:"TD" , name:"Chad"},
     {short:"CL" , name:"Chile"},
-    {short:"CN" , name:"China"},
+    {short:"CN" , name:"中国"},
     {short:"CX" , name:"Christmas Island"},
     {short:"CC" , name:"Cocos (Keeling) Islands"},
     {short:"CO" , name:"Colombia"},
