@@ -27,35 +27,35 @@ block content
           tr
             td 身份证号
             td
-              input(type="text", name="idno", value="#{idno}")
+              input(type="text", name="idno", value="#{idno}", datatype="n18-18", errormsd="请输入18位数字")
           tr
             td 联系电话
             td
-              input(type="text", name="phone", value="#{phone}")
+              input(type="text", name="phone", value="#{phone}", datatype="n11-11", errormsg="请输入手机号")
           tr
             td 家庭住址
             td
-              input(type="text", name="addr", value="#{addr}")
+              input(type="text", name="addr", value="#{addr}", datatype="*10-40", errormsg="请输入10-40个字符")
           tr
             td 职业
             td
-              input(type="text", name="career", value="#{career}")
+              input(type="text", name="career", value="#{career}", datatype="zh2-10", errormsg="请输入2-10个汉字")
           tr
             td 学历
             td
-              input(type="text", name="degree", value="#{degree}")
+              input(type="text", name="degree", value="#{degree}", datatype="zh1-4", errormsg="请输入1-4个汉字")
           tr
           tr
             td 工作单位
             td
-              input(type="text", name="company", value="#{company}")
+              input(type="text", name="company", value="#{company}", datatype="*6-30", errormsg="请输入工作单位(6-30位字符)")
           tr
             td 密码
             td
-              input(type="password", name="password")
+              input(type="password", name="password", datatype="*6-16", errormsg="请输入6-16个字符")
           tr
             td 确认密码
             td
-              input(type="password", name="password2")
+              input(type="password", name="password2", datatype="*6-16", recheck="password", errormsg="您两次输入密码不同")
       .form-group
         input(type="submit", value="提交")

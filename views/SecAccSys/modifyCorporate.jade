@@ -33,24 +33,24 @@ block content
         tr
           td 法人登记号码
           td
-            input(type="text", name="docid", value="#{docid}")
+            input(type="text", name="docid", value="#{docid}", datatype="n10-10", errormsg="请输入10位数字")
         tr
         tr
           td 姓名
           td
-            input(type="text", name="fname", value="#{fname}")
+            input(type="text", name="fname", value="#{fname}", datatype="zh2-4", errormsg="请输入2-4个汉字")
         tr
           td 身份证号
           td
-            input(type="text", name="fidno", value="#{fidno}")
+            input(type="text", name="fidno", value="#{fidno}", datatype="n18-18", errormsd="请输入18位数字")
         tr
           td 联系电话
           td
-            input(type="text", name="fphone", value="#{fphone}", datatype="*6-16", errormsg="请输入6-16个字符")
+            input(type="text", name="fphone", value="#{fphone}", datatype="m", errormsg="请输入手机号")
         tr
           td 联系住址
           td
-            input(type="text", name="faddr", value="#{faddr}")
+            input(type="text", name="faddr", value="#{faddr}", datatype="*10-40", errormsg="请输入10-40个字符")
     table.table
       tbody
         tr
@@ -63,15 +63,15 @@ block content
         tr
           td 身份证号
           td
-            input(type="text", name="idno", value="#{idno}")
+            input(type="text", name="idno", value="#{idno}", datatype="n18-18", errormsd="请输入18位数字")
         tr
           td 联系电话
           td
-            input(type="text", name="phone", value="#{phone}")
+            input(type="text", name="phone", value="#{phone}", datatype="m", errormsg="请输入手机号")
         tr
           td 联系地址
           td
-            input(type="text", name="addr", value="#{addr}")
+            input(type="text", name="addr", value="#{addr}", datatype="*10-40", errormsg="请输入10-40个字符")
         tr
           td 密码
           td

@@ -3,7 +3,7 @@ block stylesheet
   link(rel='stylesheet', href='/css/SecAccSys/register.css')
   script(type='text/javascript', src='/js/SecAccSys/switch.js')
   script(type='text/javascript').
-    /*$(function () {
+    $(function () {
       //$(".registerform").Validform();  //就这一行代码！;
 
       var demo = $(".registerform").Validform({
@@ -15,7 +15,7 @@ block stylesheet
         },
         ajaxPost: true
       });
-    });*/
+    });
 
 block content
   h1 注册新账户
@@ -96,7 +96,7 @@ block content
         tr
           td.left 联系电话
           td
-            input(type="text", name="fphone", datatype="n11-11", errormsg="请输入手机号")
+            input(type="text", name="fphone", datatype="m", errormsg="请输入手机号")
         tr
           td.left 联系住址
           td
@@ -115,7 +115,7 @@ block content
         tr
           td.left 联系电话
           td
-            input(type="text", name="phone", datatype="n11-11", errormsg="请输入手机号")
+            input(type="text", name="phone", datatype="m", errormsg="请输入手机号")
         tr
           td.left 联系地址
           td
