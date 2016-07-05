@@ -20,9 +20,9 @@ var SecS = new Schema({
     type: {type: Number, default: 0, required: true},
     tel: { type: String, default: 'null' },
     ftel: { type: String, default: 'null' },
-    docID: {type: Number, default: 0},
-    userID: {type: String, default: 0},
-    userSex: {type: Number, default: 0}, // 0 for male, 1 for female
+    docID: {type: String, default: 'null'},
+    userID: {type: String, default: 'null'},
+    userSex: {type: String, default: 'null'}, // 0 for male, 1 for female
     addr: {type: String, default: 'null'},
     faddr: {type: String, default: 'null'},
     career: {type: String, default: 'null'},
