@@ -19,15 +19,15 @@ block content
           tr
             td ID
             td
-              input(type="text", name="stockid")
+              input(type="text", name="stockid", datatype="n9-10", errormsg="请输入9到10位数字")
           tr
             td 姓名
             td
-              input(type="text", name="name")
+              input(type="text", name="name", datatype="zh2-4", errormsg="请输入姓名（2-4位汉字）")
           tr
             td 身份证号
             td
-              input(type="text", name="idno")
+              input(type="text", name="idno", datatype="n18-18", errormsd="请输入18位数字")
       .form-group
         input(type="submit", value="提交")
   #corporate.container
@@ -37,16 +37,16 @@ block content
           tr
             td ID
             td
-              input(type="text", name="stockid")
+              input(type="text", name="stockid", datatype="n9-10", errormsg="请输入9到10位数字")
           tr
             td 法人登记号码
             td
-              input(type="text", name="docid")
+              input(type="text", name="docid", datatype="n10-10", errormsg="请输入10位数字")
           tr
           tr
             td 法人姓名
             td
-              input(type="text", name="fname")
+              input(type="text", name="fname", datatype="zh2-4", errormsg="请输入姓名（2-4位汉字）")
           tr
             td 身份证号
             td
