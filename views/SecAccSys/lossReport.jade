@@ -3,8 +3,21 @@
 
 extends layout
 block stylesheet
-  link(rel='stylesheet', href='/css/register.css')
-  script(type='text/javascript', src='/js/switch.js')
+  link(rel='stylesheet', href='/css/SecAccSys/register.css')
+  script(type='text/javascript', src='/js/SecAccSys/switch.js')
+  //script(type='text/javascript').
+    $(function () {
+
+      var demo = $(".registerform").Validform({
+        tiptype: 3,
+        label: ".label",
+        showAllError: true,
+        datatype: {
+          "zh1-6": /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+        },
+        ajaxPost: true
+      });
+    });
 block content
   h1(style="text-align:center;") 挂失账户
 
@@ -13,43 +26,43 @@ block content
     span(onclick="swit(1)")#corp 法人
 
   #individual.container
-    form(action="lossReport?Corporate=0", method="post")
+    form(action="lossReport?Corporate=0", method="post").registerform
       table.table
         tbody
           tr
             td ID
             td
-              input(type="text", name="stockid")
+              input(type="text", name="stockid", datatype="n9-10", errormsg="请输入9到10位数字")
           tr
             td 姓名
             td
-              input(type="text", name="name")
+              input(type="text", name="name", datatype="zh2-4", errormsg="请输入姓名（2-4位汉字）")
           tr
             td 身份证号
             td
-              input(type="text", name="idno")
+              input(type="text", name="idno", datatype="n18-18", errormsg="请输入18位数字")
       .form-group
         input(type="submit", value="提交")
   #corporate.container
-    form(action="lossReport?Corporate=1", method="post")
+    form(action="lossReport?Corporate=1", method="post").registerform
       table.table
         tbody
           tr
             td ID
             td
-              input(type="text", name="stockid")
+              input(type="text", name="stockid", datatype="n9-10", errormsg="请输入9到10位数字")
           tr
             td 法人登记号码
             td
-              input(type="text", name="docid")
+              input(type="text", name="docid", datatype="n10-10", errormsg="请输入10位数字")
           tr
           tr
             td 法人姓名
             td
-              input(type="text", name="fname")
+              input(type="text", name="fname", datatype="zh2-4", errormsg="请输入姓名（2-4位汉字）")
           tr
             td 身份证号
             td
-              input(type="text", name="fidno")
+              input(type="text", name="fidno", datatype="n18-18", errormsg="请输入18位数字")
       .form-group
         input(type="submit", value="提交")

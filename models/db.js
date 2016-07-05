@@ -15,10 +15,21 @@ var counter = mongoose.model('counter', CounterSchema);
 // SecuritiesAccount Schema
 var SecS = new Schema({
     saId: {type: Number, default: 0, required: true},
+    name: {type: String, default: 'null'},
+    fname: {type: String, default: 'null'},
     type: {type: Number, default: 0, required: true},
-    registeTime: {type: Date, default: Date.now},
     tel: { type: String, default: 'null' },
-    docID: {type: Number, default: 0}
+    ftel: { type: String, default: 'null' },
+    docID: {type: Number, default: 0},
+    userID: {type: String, default: 0},
+    userSex: {type: Number, default: 0}, // 0 for male, 1 for female
+    addr: {type: String, default: 'null'},
+    faddr: {type: String, default: 'null'},
+    career: {type: String, default: 'null'},
+    degree: {type: String, default: 'null'},
+    company: {type: String, default: 'null'},
+    password: {type: String, default: 'null'},
+    isActivated: {type: Number, default: 1}
 });
 mongoose.model('SecuritiesAccount', SecS);
 
